@@ -1,11 +1,13 @@
 const Alexa = require('ask-sdk-core');
-
+const AWS = require('aws-sdk');
+const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
+const dynamoDBTableName = "CatalogueDB";
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently. ';
+        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -49,6 +51,108 @@ const CatalogueAddItemHandler = {
     }
 }
 
+const CreateCatalogueHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CreateCatalogueIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        
+        let speechText = ""
+        
+        // return HelpIntentHandler.handle(handlerInput);
+        speechText = "You successfully created "+ catalog +" catalogue."
+
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
+
+const OpenCatalogueHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'OpenCatalogueIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        
+        let speechText = "";
+        
+ 
+        speechText = "Items in the " + catalog + " catalogue. Lord of the rings, Harry Potter, Game of thrones.";
+        
+        // const speakOutput = 'You can say hello to me! How can I help?';
+
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
+const UpdateItemHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'UpdateItemIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        const description = Alexa.getSlotValue(requestEnvelope, 'description');
+        
+        let speechText = "";
+        
+        speechText = "Description of the " +item+ " in the "+catalog+" catalog is updated to "+description ;
+        
+        
+        // const speakOutput = 'You can say hello to me! How can I help?';
+
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+}
+const DeleteItemHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteItemIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+        
+        let speechText = ""
+        
+ 
+        speechText = item + " is deleted from the " + catalog;
+        
+        // const speakOutput = 'You can say hello to me! How can I help?';
+
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -164,6 +268,10 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         CatalogueAddItemHandler,
+        CreateCatalogueHandler,
+        OpenCatalogueHandler,
+        UpdateItemHandler,
+        DeleteItemHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)
