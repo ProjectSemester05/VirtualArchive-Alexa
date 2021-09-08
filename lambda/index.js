@@ -49,7 +49,7 @@ const CatalogueAddItemHandler = {
             .reprompt(speechText)
             .getResponse();
     }
-}
+};
 
 const CreateCatalogueHandler = {
     canHandle(handlerInput) {
@@ -126,7 +126,7 @@ const UpdateItemHandler = {
             .reprompt(speechText)
             .getResponse();
     }
-}
+};
 const DeleteItemHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -154,6 +154,31 @@ const DeleteItemHandler = {
     }
 };
 
+const AddReminderIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AddReminderIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        const reminder = Alexa.getSlotValue(requestEnvelope, 'reminder');
+        
+        let speechText = ""
+        
+        speechText = "You Successfully added a reminder to "+item+" in the "+catalog+" catalog. It is "+reminder ;
+        // const speakOutput = 'You can say hello to me! How can I help?';
+
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+}
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -272,6 +297,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         OpenCatalogueHandler,
         UpdateItemHandler,
         DeleteItemHandler,
+        AddReminderIntentHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)
