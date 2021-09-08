@@ -166,7 +166,7 @@ const AddReminderIntentHandler = {
 
         const item = Alexa.getSlotValue(requestEnvelope, 'item');
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
-        const reminder = Alexa.getSlotValue(requestEnvelope, 'reminder');
+        const reminder = Alexa.getSlotValue(requestEnvelope, 'date');
         
         let speechText = ""
         
