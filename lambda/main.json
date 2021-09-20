@@ -30,10 +30,10 @@
                 "headerSubtitle": "",
                 "imageBlurredBackground": false,
                 "imageAspectRatio": "square",
-                "imageSource": "${payload.demo.properties.imageSource}",
+                "imageSource": "",
                 "imageCaption": "",
-                "bodyText": "${payload.demo.properties.bodyText}",
-                "primaryText": "${payload.demo.properties.imageCaption}",
+                "bodyText": "Texts",
+                "primaryText": "",
                 "button1Text": "< Back",
                 "button1PrimaryAction": [
                     {
