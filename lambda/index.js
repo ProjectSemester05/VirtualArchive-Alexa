@@ -68,7 +68,7 @@ const CreateCatalogueHandler = {
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
-        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalogues');
         
         let speechText = ""
         
