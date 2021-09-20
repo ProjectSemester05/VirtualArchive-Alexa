@@ -25,7 +25,7 @@
                 "text": "Welcome to Virtual Archive",
                 "id": "mainScreen",
                 "detailType": "generic",
-                "detailImageAlignment": "right",
+                "detailImageAlignment": "center",
                 "headerTitle": "",
                 "headerSubtitle": "",
                 "imageBlurredBackground": false,
