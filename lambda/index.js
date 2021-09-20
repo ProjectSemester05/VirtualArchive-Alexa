@@ -332,6 +332,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         UpdateItemHandler,
         DeleteItemHandler,
         AddReminderIntentHandler,
+        UpdateReminderHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)
