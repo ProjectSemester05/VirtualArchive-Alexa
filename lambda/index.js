@@ -34,15 +34,15 @@ const CatalogueAddItemHandler = {
         const {intent} = requestEnvelope.request;
 
         const item = Alexa.getSlotValue(requestEnvelope, 'item');
-        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalogues');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         const description = Alexa.getSlotValue(requestEnvelope, 'description');
         
         let speechText = ""
         
         if (description !== null && description !== undefined){
-            speechText = "You Successfully added "+item+" to the "+catalog+" catalog, saying "+description
+            speechText = "You Successfully added "+item+" to the "+catalog+" catalogue, saying "+description
         } else {
-            speechText = "You Successfully added "+item+" to the "+catalog+" catalog"
+            speechText = "You Successfully added "+item+" to the "+catalog+" catalogue"
         }
             
         
@@ -68,7 +68,7 @@ const CreateCatalogueHandler = {
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
-        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalogues');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         
         let speechText = ""
         
@@ -144,8 +144,8 @@ const DeleteItemHandler = {
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
-        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalogues');
-        const item = Alexa.getSlotValue(requestEnvelope, 'items');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
         
         let speechText = ""
         
