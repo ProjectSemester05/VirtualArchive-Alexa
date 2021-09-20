@@ -9,6 +9,10 @@
             {
                 "type": "Text",
                 "text": "Welcome to Virtual Archive"
+            },
+            {
+                "type": "Text",
+                "text": "Catalogues"
             }
         ]
     }
