@@ -1,6 +1,20 @@
 {
     "type": "APL",
-    "version": "1.0",
+    "version": "1.5",
+    "settings": {},
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.2.0"
+        }
+    ],
+    "resources": [],
+    "styles": {},
+    "onMount":[],
+    "graphics": {},
+    "commands": {},
+    "layouts": {},
     "mainTemplate": {
         "parameters": [
             "payload"
@@ -8,7 +22,38 @@
         "items": [
             {
                 "type": "Text",
-                "text": "Welcome to Virtual Archive"
+                "text": "Welcome to Virtual Archive",
+                                "id": "mainScreen",
+                "detailType": "generic",
+                "detailImageAlignment": "right",
+                "headerTitle": "",
+                "headerSubtitle": "",
+                "imageBlurredBackground": false,
+                "imageAspectRatio": "square",
+                "imageSource": "${payload.demo.properties.imageSource}",
+                "imageCaption": "",
+                "bodyText": "${payload.demo.properties.bodyText}",
+                "primaryText": "${payload.demo.properties.imageCaption}",
+                "button1Text": "< Back",
+                "button1PrimaryAction": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "cheeseback",
+                            "back"
+                        ]
+                    }
+                ],
+                "button2Text": "Next >",
+                "button2PrimaryAction": [
+                    {
+                        "type": "SendEvent",
+                        "arguments": [
+                            "cheesenext",
+                            "next"
+                        ]
+                    }
+                ]
             }
         ]
     }
