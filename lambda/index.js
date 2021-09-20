@@ -185,7 +185,34 @@ const AddReminderIntentHandler = {
             .reprompt(speechText)
             .getResponse();
     }
-}
+};
+const UpdateReminderHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'UpdateReminderIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        const reminder = Alexa.getSlotValue(requestEnvelope, 'date');
+        
+        let speechText = "";
+        
+        speechText = "Reminder of the " +item+ " in the "+catalog+" catalog is updated into "+reminder ;
+        
+        
+        // const speakOutput = 'You can say hello to me! How can I help?';
+
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
