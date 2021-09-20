@@ -23,7 +23,7 @@
             {
                 "type": "Text",
                 "text": "Welcome to Virtual Archive",
-                                "id": "mainScreen",
+                "id": "mainScreen",
                 "detailType": "generic",
                 "detailImageAlignment": "right",
                 "headerTitle": "",
