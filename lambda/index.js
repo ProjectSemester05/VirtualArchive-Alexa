@@ -11,6 +11,12 @@ const LaunchRequestHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
+            .addDirective({
+        type: 'Alexa.Presentation.APL.RenderDocument',
+        version: '1.0',
+        document: main,
+        datasources: {}
+      })
             .reprompt(speakOutput)
             .getResponse();
     }
