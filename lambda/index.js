@@ -145,7 +145,7 @@ const DeleteItemHandler = {
         const {intent} = requestEnvelope.request;
 
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalogues');
-        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+        const item = Alexa.getSlotValue(requestEnvelope, 'items');
         
         let speechText = ""
         
