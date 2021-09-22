@@ -275,7 +275,7 @@ const ViewDescriptionHandler = {
             const item = Alexa.getSlotValue(requestEnvelope, 'item');
             const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
     
-            let speechText = `${item}`;
+            let speechText = ``;
     
             let catalogUUID = ""
     
