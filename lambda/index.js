@@ -275,7 +275,7 @@ const ViewDescriptionHandler = {
             const item = Alexa.getSlotValue(requestEnvelope, 'item');
             const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
     
-            let speechText = "";
+            let speechText = `${item}`;
     
             let catalogUUID = ""
     
@@ -308,7 +308,7 @@ const ViewDescriptionHandler = {
 
                 
                 if(speechText === ''){
-                    speechText += 'Invalid item name '+item
+                    speechText += 'Invalid item name '
                 }
 
             })
