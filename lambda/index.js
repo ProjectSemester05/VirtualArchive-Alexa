@@ -296,7 +296,6 @@ const ViewDescriptionHandler = {
 
                 let allItems = data.Items
 
-                speechText = "Items in "+catalog+" are, ";
 
                 for (let eachitem in allItems){
                     if(eachitem.ItemName === item){
