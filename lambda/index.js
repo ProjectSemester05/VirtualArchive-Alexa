@@ -2,7 +2,7 @@ const Alexa = require('ask-sdk-core');
 const AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 const dynamoDBTableName = "CatalogueDB";
-const main = require('./main.json');
+//const main = require('./main.json');
 
 const getRemoteData = (url) => new Promise((resolve, reject) => {
   const client = url.startsWith('https') ? require('https') : require('http');
@@ -27,12 +27,12 @@ const LaunchRequestHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .addDirective({
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        version: '1.0',
-        document: main,
-        datasources: {}
-      })
+    //         .addDirective({
+    //     type: 'Alexa.Presentation.APL.RenderDocument',
+    //     version: '1.0',
+    //     document: main,
+    //     datasources: {}
+    //   })
             .reprompt(speakOutput)
             .getResponse();
     }
