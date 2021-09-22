@@ -360,7 +360,7 @@ const ViewReminderHandler = {
 
                 allItems.forEach(dbitem => {
                     if(dbitem.ItemName.localeCompare(item) === 0){
-                        speechText = `Description of ${item} is ${dbitem.Reminder}`;
+                        speechText = `Reminder of ${item} is ${dbitem.Reminder}`;
                     }
                 });
 
