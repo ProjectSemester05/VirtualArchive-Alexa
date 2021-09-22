@@ -301,7 +301,7 @@ const ViewDescriptionHandler = {
                     if(new String(dbitem.ItemName).valueOf == new String(item).valueOf()){
                         speechText = `Description of ${item} is ${dbitem.ItemName}`;
                     }
-                    speechText = `Description of ${item} is ${dbitem.ItemName}`;   
+                    speechText = `No Description for ${dbitem.ItemName}`;   
                 });
 
 
