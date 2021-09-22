@@ -322,6 +322,67 @@ const ViewDescriptionHandler = {
     }
 };
 
+
+const ViewReminderHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewReminderIntent';
+    },
+    async handle(handlerInput) {
+    
+            const {requestEnvelope, responseBuilder} = handlerInput;
+            const {intent} = requestEnvelope.request;
+    
+            const item = Alexa.getSlotValue(requestEnvelope, 'item');
+            const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+    
+            let speechText = ``;
+    
+            let catalogUUID = ""
+    
+            await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+                .then((response) => {
+                    const data = JSON.parse(response);
+    
+                    catalogUUID = data.Catalogues[0].UUID;
+    
+                })
+                .catch((err) => {
+                    console.log(`ERROR: ${err.message}`);
+                })
+    
+            await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+            .then((response) => {
+                const data = JSON.parse(response);
+
+                let allItems = data.Items
+
+
+                allItems.forEach(dbitem => {
+                    if(dbitem.ItemName.localeCompare(item) === 0){
+                        speechText = `Description of ${item} is ${dbitem.Reminder}`;
+                    }
+                });
+
+
+                
+                if(speechText === ''){
+                    speechText += 'Invalid item name '
+                }
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+
+
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -444,6 +505,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         AddReminderIntentHandler,
         UpdateReminderHandler,
         ViewDescriptionHandler,
+        ViewReminderHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)
