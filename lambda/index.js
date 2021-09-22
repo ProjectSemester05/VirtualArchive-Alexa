@@ -299,7 +299,7 @@ const ViewDescriptionHandler = {
 
                 allItems.forEach(item => {
 
-                    if(item.ItemName == item){
+                    if(item.ItemName.equals(item)){
                         speechText = `Description of ${item} is ${allItems.Description}`;
                     }                    
                     
@@ -308,7 +308,7 @@ const ViewDescriptionHandler = {
 
                 
                 if(speechText === ''){
-                    speechText += 'Invalid item name'
+                    speechText += 'Invalid item name '+item
                 }
 
             })
