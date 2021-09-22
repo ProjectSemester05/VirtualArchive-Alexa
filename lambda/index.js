@@ -298,7 +298,7 @@ const ViewDescriptionHandler = {
 
 
                 for (let eachitem in allItems){
-                    speechText = 'eachitem.ItemName'
+                    speechText = `${eachitem.ItemName}``
                     if(eachitem.ItemName == item){
                         speechText = `Description of ${item} is ${allItems.Description}`;
                         break
