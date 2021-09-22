@@ -298,7 +298,10 @@ const ViewDescriptionHandler = {
 
 
                 allItems.forEach(dbitem => {
+                    if(new String(dbitem.ItemName).valueOf == new String(item).valueOf()){
                         speechText = `Description of ${item} is ${dbitem.ItemName}`;
+                    }
+                        
                 });
 
 
