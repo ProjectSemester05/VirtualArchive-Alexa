@@ -87,19 +87,52 @@ const OpenCatalogueHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'OpenCatalogueIntent';
     },
-    handle(handlerInput) {
-        
+async handle(handlerInput) {
+
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
-        
+
         let speechText = "";
-        
- 
-        speechText = "Items in the " + catalog + " catalogue. Lord of the rings, Harry Potter, Game of thrones.";
-        
-        // const speakOutput = 'You can say hello to me! How can I help?';
+
+        let catalogUUID = ""
+
+        await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+            .then((response) => {
+                const data = JSON.parse(response);
+
+                catalogUUID = data.Catalogues[0].UUID;
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+
+        await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+            .then((response) => {
+                const data = JSON.parse(response);
+
+                let allItems = data.Items
+
+                if (allItems.length === 0) {
+                    speechText = "There are no items in "+catalog
+                } else {
+
+                    speechText = "Items in "+catalog+" are, "
+
+                    allItems.forEach(item => {
+                        speechText = speechText+item.ItemName+", "
+                    });
+
+                    speechText = speechText.slice(0, -2);
+                }
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -315,6 +348,18 @@ const ErrorHandler = {
     }
 };
 
+const getRemoteData = (url) => new Promise((resolve, reject) => {
+  const client = url.startsWith('https') ? require('https') : require('http');
+  const request = client.get(url, (response) => {
+    if (response.statusCode < 200 || response.statusCode > 299) {
+      reject(new Error(`Failed with status code: ${response.statusCode}`));
+    }
+    const body = [];
+    response.on('data', (chunk) => body.push(chunk));
+    response.on('end', () => resolve(body.join('')));
+  });
+  request.on('error', (err) => reject(err));
+});
 
 /**
  * This handler acts as the entry point for your skill, routing all request and response
