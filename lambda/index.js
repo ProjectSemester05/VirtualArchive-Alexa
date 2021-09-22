@@ -289,17 +289,16 @@ const ViewDescriptionHandler = {
                 .catch((err) => {
                     console.log(`ERROR: ${err.message}`);
                 })
-
-        await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+    
+            await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
                 let allItems = data.Items
 
 
-                allItems.forEach(item => {
-
-                    if(item.ItemName.equals(item)){
+                allItems.forEach(dbitem => {
+                    if(dbitem.ItemName.equals(item)){
                         speechText = `Description of ${item} is ${allItems.Description}`;
                     }                    
                     
