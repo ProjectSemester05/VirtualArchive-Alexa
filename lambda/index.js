@@ -305,10 +305,8 @@ async handle(handlerInput) {
                     }
                 }
                 if(speechText === ''){
-                    speechText = 'Item is not valid'
+                    speechText = 'Invalid item name'
                 }
-
-                speechText = speechText.slice(0, -2);
 
             })
             .catch((err) => {
