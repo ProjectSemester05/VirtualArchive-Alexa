@@ -302,7 +302,7 @@ const ViewDescriptionHandler = {
                     let str2 = item
                     let compare = str1.localeCompare(str2)
                     if(compare === 0){
-                        speechText = `Description of ${item} is ${dbitem.ItemName}`;
+                        speechText = `Description of ${item} is ${dbitem.Description}`;
                     }
                 });
 
