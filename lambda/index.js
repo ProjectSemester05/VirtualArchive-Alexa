@@ -297,13 +297,15 @@ const ViewDescriptionHandler = {
                 let allItems = data.Items
 
 
-                for (let eachitem in allItems){
-                    speechText = `${eachitem.ItemName}`
-                    if(eachitem.ItemName == item){
+                allItems.forEach(item => {
+                    if(item.ItemName == item){
                         speechText = `Description of ${item} is ${allItems.Description}`;
-                        break
-                    }
-                }
+                    }                    
+                    
+                });
+
+
+                
                 if(speechText === ''){
                     speechText += 'Invalid item name'
                 }
