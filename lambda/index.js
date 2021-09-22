@@ -298,10 +298,7 @@ const ViewDescriptionHandler = {
 
 
                 allItems.forEach(dbitem => {
-                    let str1 = dbitem.ItemName
-                    let str2 = item
-                    let compare = str1.localeCompare(str2)
-                    if(compare === 0){
+                    if(dbitem.ItemName.localeCompare(item) === 0){
                         speechText = `Description of ${item} is ${dbitem.Description}`;
                     }
                 });
