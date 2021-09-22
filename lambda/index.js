@@ -267,28 +267,28 @@ const ViewDescriptionHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewDescriptionIntent';
     },
-async handle(handlerInput) {
-
-        const {requestEnvelope, responseBuilder} = handlerInput;
-        const {intent} = requestEnvelope.request;
-
-        const item = Alexa.getSlotValue(requestEnvelope, 'item');
-        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
-
-        let speechText = "";
-
-        let catalogUUID = ""
-
-        await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
-            .then((response) => {
-                const data = JSON.parse(response);
-
-                catalogUUID = data.Catalogues[0].UUID;
-
-            })
-            .catch((err) => {
-                console.log(`ERROR: ${err.message}`);
-            })
+    async handle(handlerInput) {
+    
+            const {requestEnvelope, responseBuilder} = handlerInput;
+            const {intent} = requestEnvelope.request;
+    
+            const item = Alexa.getSlotValue(requestEnvelope, 'item');
+            const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+    
+            let speechText = "";
+    
+            let catalogUUID = ""
+    
+            await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+                .then((response) => {
+                    const data = JSON.parse(response);
+    
+                    catalogUUID = data.Catalogues[0].UUID;
+    
+                })
+                .catch((err) => {
+                    console.log(`ERROR: ${err.message}`);
+                })
 
         await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
             .then((response) => {
