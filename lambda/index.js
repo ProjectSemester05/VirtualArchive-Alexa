@@ -307,9 +307,7 @@ const ViewDescriptionHandler = {
 
 
                 
-                if(speechText === ''){
-                    speechText += 'Invalid item name'
-                }
+
 
             })
             .catch((err) => {
