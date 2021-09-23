@@ -340,7 +340,8 @@ const ViewReminderHandler = {
             let speechText = ``;
     
             let catalogUUID = ""
-    
+            let reminder_db = '';
+            
             await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
                 .then((response) => {
                     const data = JSON.parse(response);
@@ -357,11 +358,12 @@ const ViewReminderHandler = {
                 const data = JSON.parse(response);
 
                 let allItems = data.Items
-
+                
 
                 allItems.forEach(dbitem => {
                     if(dbitem.ItemName.localeCompare(item) === 0){
-                        speechText = `Reminder of ${item} is ${dbitem.Reminder}`;
+                        // speechText = `Reminder of ${item} is ${dbitem.Reminder}`;
+                        reminder_db = item
                     }
                 });
 
@@ -375,6 +377,20 @@ const ViewReminderHandler = {
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
+            if(reminder_db !== ''){
+                await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/reminder/${reminder_db}`)
+                    .then((response) => {
+                        const data = JSON.parse(response);
+        
+                        let reminder_data = data.Reminder;
+                        speechText = `Reminder of ${item} is ${reminder_data}`;
+                    })
+                .catch((err) => {
+                    console.log(`ERROR: ${err.message}`);
+                })
+                
+            }
+
 
 
         return handlerInput.responseBuilder
