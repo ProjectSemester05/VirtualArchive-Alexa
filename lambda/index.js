@@ -103,7 +103,7 @@ const OpenCatalogueHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'OpenCatalogueIntent';
     },
-async handle(handlerInput) {
+    async handle(handlerInput) {
 
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
