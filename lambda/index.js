@@ -340,7 +340,7 @@ const ViewReminderHandler = {
             let speechText = ``;
     
             let catalogUUID = ""
-            let reminder_uuid = '';
+            let item_uuid = '';
             
             await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
                 .then((response) => {
@@ -363,7 +363,7 @@ const ViewReminderHandler = {
                 allItems.forEach(dbitem => {
                     if(dbitem.ItemName.localeCompare(item) === 0){
                         speechText = `Reminder of ${item} is ${dbitem.Reminder}`;
-                        reminder_uuid = dbitem.UUID
+                        item_uuid = dbitem.UUID
                     }
                 });
 
@@ -377,8 +377,8 @@ const ViewReminderHandler = {
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
-            if(reminder_uuid !== ''){
-                await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/reminder/${reminder_uuid}`)
+            if(item_uuid !== ''){
+                await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/reminder/${item_uuid}`)
                     .then((response) => {
                         const data = JSON.parse(response);
         
