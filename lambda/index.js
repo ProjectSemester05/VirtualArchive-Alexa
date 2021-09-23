@@ -18,19 +18,6 @@ const getRemoteData = (url) => new Promise((resolve, reject) => {
   request.on('error', (err) => reject(err));
 });
 
-const setRemoteData = (url) => new Promise((resolve, reject) => {
-  const client = url.startsWith('https') ? require('https') : require('http');
-  const request = client.post(url, (response) => {
-    if (response.statusCode < 200 || response.statusCode > 299) {
-      reject(new Error(`Failed with status code: ${response.statusCode}`));
-    }
-    const body = [];
-    response.on('data', (chunk) => body.push(chunk));
-    response.on('end', () => resolve(body.join('')));
-  });
-  request.on('error', (err) => reject(err));
-});
-
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -92,7 +79,7 @@ const CreateCatalogueHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CreateCatalogueIntent';
     },
-    async handle(handlerInput) {
+    handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -100,14 +87,6 @@ const CreateCatalogueHandler = {
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         
         let speechText = ""
-        let catalogUUID = '737d61eb-d8e3-4ed5-af3b-8c44119ff3d6';
-        await setRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue/new`)
-            .then((response) => {
-                const data = JSON.parse(response);
-            })
-            .catch((err) => {
-                console.log(`ERROR: ${err.message}`);
-            })
         
         // return HelpIntentHandler.handle(handlerInput);
         speechText = "You successfully created "+ catalog +" catalogue."
