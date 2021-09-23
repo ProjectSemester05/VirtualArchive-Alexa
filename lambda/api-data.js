@@ -1,4 +1,4 @@
-const getRemoteData = (url) => new Promise((resolve, reject) => {
+exports.handler = (url) => new Promise((resolve, reject) => {
   const client = url.startsWith('https') ? require('https') : require('http');
   const request = client.get(url, (response) => {
     if (response.statusCode < 200 || response.statusCode > 299) {
@@ -11,4 +11,3 @@ const getRemoteData = (url) => new Promise((resolve, reject) => {
   request.on('error', (err) => reject(err));
 });
 
-exports.handler = getRemoteData
