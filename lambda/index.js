@@ -4,18 +4,7 @@ const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 const dynamoDBTableName = "CatalogueDB";
 //const main = require('./main.json');
 
-const getRemoteData = (url) => new Promise((resolve, reject) => {
-  const client = url.startsWith('https') ? require('https') : require('http');
-  const request = client.get(url, (response) => {
-    if (response.statusCode < 200 || response.statusCode > 299) {
-      reject(new Error(`Failed with status code: ${response.statusCode}`));
-    }
-    const body = [];
-    response.on('data', (chunk) => body.push(chunk));
-    response.on('end', () => resolve(body.join('')));
-  });
-  request.on('error', (err) => reject(err));
-});
+const getRemoteData = require('./api-data.js');
 
 
 const LaunchRequestHandler = {
