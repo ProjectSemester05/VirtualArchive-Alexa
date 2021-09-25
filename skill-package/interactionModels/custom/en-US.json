@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "virtual archive",
+      "invocationName": "virtual archivez",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
