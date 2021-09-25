@@ -378,7 +378,7 @@ const ViewReminderHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
             if(item_uuid !== ''){
-                await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/reminder/${item_uuid}`)
+                await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/reminder/${catalogUUID}`)
                     .then((response) => {
                         const data = JSON.parse(response);
         
