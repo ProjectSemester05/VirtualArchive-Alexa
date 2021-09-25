@@ -24,7 +24,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
+        const speakOutput = 'Welcome to Virtual Archive. Here, you can organize your items efficiently.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
