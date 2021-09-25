@@ -114,7 +114,7 @@ const OpenCatalogueHandler = {
 
         let catalogUUID = ""
 
-        await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+        await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -125,7 +125,7 @@ const OpenCatalogueHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
 
-        await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+        await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -280,7 +280,7 @@ const ViewDescriptionHandler = {
     
             let catalogUUID = ""
     
-            await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+            await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
                 .then((response) => {
                     const data = JSON.parse(response);
     
@@ -291,7 +291,7 @@ const ViewDescriptionHandler = {
                     console.log(`ERROR: ${err.message}`);
                 })
     
-            await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+            await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -342,7 +342,7 @@ const ViewReminderHandler = {
             let catalogUUID = ""
             let item_uuid = '';
             
-            await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+            await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
                 .then((response) => {
                     const data = JSON.parse(response);
     
@@ -353,7 +353,7 @@ const ViewReminderHandler = {
                     console.log(`ERROR: ${err.message}`);
                 })
     
-            await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+            await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -378,7 +378,7 @@ const ViewReminderHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
             if(item_uuid !== ''){
-                await getRemoteData(`https://heitt4m2fe.execute-api.us-east-1.amazonaws.com/dev/reminder/${item_uuid}`)
+                await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/reminder/${item_uuid}`)
                     .then((response) => {
                         const data = JSON.parse(response);
         
