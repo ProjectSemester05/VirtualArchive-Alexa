@@ -2,6 +2,7 @@ const Alexa = require('ask-sdk-core');
 const AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 const dynamoDBTableName = "CatalogueDB";
+const jwt = require("jwt-decode")
 //const main = require('./main.json');
 // const getRemoteData = require('./api-data.js');
 
@@ -24,6 +25,9 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt("accessToken")
+        console.log(accessToken);
         const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
 
         return handlerInput.responseBuilder
@@ -526,6 +530,12 @@ exports.handler = Alexa.SkillBuilders.custom()
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)
+    .addRequestInterceptors(function (handlerInput) {
+        console.log(`\n********** REQUEST *********\n${JSON.stringify(handlerInput, null, 4)}`);
+    })
+    .addResponseInterceptors(function (request, response) {
+        console.log(`\n************* RESPONSE **************\n${JSON.stringify(response, null, 4)}`);
+    })
     .addErrorHandlers(
         ErrorHandler)
     .lambda();
