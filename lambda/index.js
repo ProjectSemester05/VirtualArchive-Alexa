@@ -26,8 +26,8 @@ const LaunchRequestHandler = {
     handle(handlerInput) {
         
         const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
-        //const { accessToken } = handlerInput.requestEnvelope.session.user;
-        console.log(handlerInput.requestEnvelope)
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        //console.log(handlerInput.requestEnvelope)
         return handlerInput.responseBuilder
             .speak(speakOutput)
     //         .addDirective({
