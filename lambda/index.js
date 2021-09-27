@@ -25,9 +25,9 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const { accessToken } = handlerInput.requestEnvelope.session.user;
-        // let decoded = jwt(accessToken)
-        // let userID = decoded.sub
+        // const { accessToken } = handlerInput.requestEnvelope.session.user;
+        // // let decoded = jwt(accessToken)
+        // // let userID = decoded.sub
         
         const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
         
