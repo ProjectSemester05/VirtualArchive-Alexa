@@ -25,12 +25,13 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        
-        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
         const { accessToken } = handlerInput.requestEnvelope.session.user;
         let decoded = jwt(accessToken)
         console.log("Test")
         console.log(decoded)
+        
+        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.'+decoded.sub;
+        
         
         return handlerInput.responseBuilder
             .speak(speakOutput)
