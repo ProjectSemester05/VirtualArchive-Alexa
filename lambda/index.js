@@ -527,12 +527,6 @@ exports.handler = Alexa.SkillBuilders.custom()
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)
-    .addRequestInterceptors(function (handlerInput) {
-        console.log(`\n********** REQUEST *********\n${JSON.stringify(handlerInput, null, 4)}`);
-    })
-    .addResponseInterceptors(function (request, response) {
-        console.log(`\n************* RESPONSE **************\n${JSON.stringify(response, null, 4)}`);
-    })
     .addErrorHandlers(
         ErrorHandler)
     .lambda();
