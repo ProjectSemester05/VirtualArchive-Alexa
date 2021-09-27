@@ -26,8 +26,8 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         const { accessToken } = handlerInput.requestEnvelope.session.user;
-        let decoded = jwt(accessToken)
-        let userID = decoded.sub
+        // let decoded = jwt(accessToken)
+        // let userID = decoded.sub
         
         const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
         
