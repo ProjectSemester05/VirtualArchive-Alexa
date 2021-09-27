@@ -27,10 +27,9 @@ const LaunchRequestHandler = {
     handle(handlerInput) {
         const { accessToken } = handlerInput.requestEnvelope.session.user;
         let decoded = jwt(accessToken)
-        console.log("Test")
-        console.log(decoded)
+        let userID = decoded.sub
         
-        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.'+decoded.sub;
+        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
         
         
         return handlerInput.responseBuilder
