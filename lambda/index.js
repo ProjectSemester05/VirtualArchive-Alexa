@@ -2,7 +2,7 @@ const Alexa = require('ask-sdk-core');
 const AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 const dynamoDBTableName = "CatalogueDB";
-const jwt = require("jwt-decode")
+// const jwt = require("jwt-decode")
 //const main = require('./main.json');
 // const getRemoteData = require('./api-data.js');
 
