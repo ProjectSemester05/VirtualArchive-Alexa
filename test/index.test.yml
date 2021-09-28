@@ -1,0 +1,19 @@
+---
+configuration:
+    locales: en-US
+
+---
+- test: Launch Virtual Archive
+- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently."
+
+---
+- test: Help Intent
+- AMAZON.HelpIntent: "You can say hello to me! How can I help?"
+
+---
+- test: Delete Item
+- DeleteItemIntent catalog=kitchen item=mug: "mug is deleted from the kitchen"
+
+---
+- test: Adding an item to a catalogue with description
+- CatalogAddItemIntent catalog=kitchen item=mug description=blue_one: "You Successfully added mug to the kitchen catalogue, saying blue_one"

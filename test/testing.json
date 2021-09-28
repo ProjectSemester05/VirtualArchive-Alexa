@@ -1,0 +1,3 @@
+{
+    "handler": "../lambda/index.js"
+}

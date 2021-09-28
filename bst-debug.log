@@ -1,0 +1,117 @@
+2021-09-27T14:10:49.266Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-27T14:10:49.269Z error: bst-test            Error: The interaction model for your Alexa Skill could not be found under:
+models\en-US.json
+Please provide the correct location of the Interaction Model.
+    at Function.Object.<anonymous>.InteractionModel.fromFile (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\model\InteractionModel.js:51:23)
+    at VirtualAlexaBuilder.Object.<anonymous>.VirtualAlexaBuilder.create (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\VirtualAlexa.js:169:57)
+    at VirtualAlexaInvoker.before (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:62:48)
+    at TestRunner.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:147:25)
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:1:192)
+    at _next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:3:194)
+2021-09-27T14:11:11.399Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-27T14:11:11.403Z error: bst-test            Error: The interaction model for your Alexa Skill could not be found under:
+F:\VirtualArchive\test\models\en-US.json
+Please provide the correct location of the Interaction Model.
+    at Function.Object.<anonymous>.InteractionModel.fromFile (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\model\InteractionModel.js:51:23)
+    at VirtualAlexaBuilder.Object.<anonymous>.VirtualAlexaBuilder.create (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\VirtualAlexa.js:169:57)
+    at VirtualAlexaInvoker.before (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:62:48)
+    at TestRunner.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:147:25)
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:1:192)
+    at _next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:3:194)
+2021-09-27T14:12:21.237Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-27T14:12:21.242Z error: bst-test            Error: The interaction model for your Alexa Skill could not be found under:
+F:\VirtualArchive\test\models\en-US.json
+Please provide the correct location of the Interaction Model.
+    at Function.Object.<anonymous>.InteractionModel.fromFile (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\model\InteractionModel.js:51:23)
+    at VirtualAlexaBuilder.Object.<anonymous>.VirtualAlexaBuilder.create (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\VirtualAlexa.js:169:57)
+    at VirtualAlexaInvoker.before (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:62:48)
+    at TestRunner.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:147:25)
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:1:192)
+    at _next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:3:194)
+2021-09-27T14:13:16.231Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-27T14:13:16.258Z error: bst-test            Error: Cannot find module 'ask-sdk-core' from 'index.js'
+    at Resolver.resolveModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-resolve\build\index.js:259:17)
+    at Resolver._getVirtualMockPath (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-resolve\build\index.js:390:14)
+    at Resolver._getAbsolutePath (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-resolve\build\index.js:376:14)
+    at Resolver.getModuleID (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-resolve\build\index.js:348:31)
+    at Runtime._shouldMock (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:942:37)
+    at Runtime.require [as requireModuleOrMock] (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:595:16)
+    at Object.<anonymous> (F:\VirtualArchive\lambda\index.js:1:15)
+    at Runtime._execModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:867:68)
+    at Runtime._loadModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:577:12)
+    at Runtime.requireModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:433:10)
+2021-09-27T14:28:30.241Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-27T14:28:30.245Z error: bst-test            Error: Trying to add undefined slot to intent: catlog
+    at SkillRequest.Object.<anonymous>.SkillRequest.slot (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\SkillRequest.js:188:19)
+    at SkillRequest.Object.<anonymous>.SkillRequest.slots (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\SkillRequest.js:206:22)
+    at VirtualAlexa.Object.<anonymous>.VirtualAlexa.intend (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\VirtualAlexa.js:62:83)
+    at VirtualAlexaInvoker.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:196:51)
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:1:192)
+    at _next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:194)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:364
+    at new Promise (<anonymous>)
+    at VirtualAlexaInvoker.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:97)
+2021-09-27T14:30:00.574Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-27T14:30:00.578Z error: bst-test            Error: Trying to add undefined slot to intent: catlog
+    at SkillRequest.Object.<anonymous>.SkillRequest.slot (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\SkillRequest.js:188:19)
+    at SkillRequest.Object.<anonymous>.SkillRequest.slots (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\SkillRequest.js:206:22)
+    at VirtualAlexa.Object.<anonymous>.VirtualAlexa.intend (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\VirtualAlexa.js:62:83)
+    at VirtualAlexaInvoker.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:196:51)
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:1:192)
+    at _next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:194)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:364
+    at new Promise (<anonymous>)
+    at VirtualAlexaInvoker.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:97)
+2021-09-28T04:24:18.311Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-28T04:24:18.341Z error: bst-test            Error: Cannot find module 'jwt-decode' from 'index.js'
+    at Resolver.resolveModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-resolve\build\index.js:259:17)
+    at Resolver._getVirtualMockPath (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-resolve\build\index.js:390:14)
+    at Resolver._getAbsolutePath (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-resolve\build\index.js:376:14)
+    at Resolver.getModuleID (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-resolve\build\index.js:348:31)
+    at Runtime._shouldMock (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:942:37)
+    at Runtime.require [as requireModuleOrMock] (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:595:16)
+    at Object.<anonymous> (F:\VirtualArchive\lambda\index.js:5:13)
+    at Runtime._execModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:867:68)
+    at Runtime._loadModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:577:12)
+    at Runtime.requireModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:433:10)
+2021-09-28T04:24:18.356Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-28T04:24:18.391Z error: bst-test            TypeError: lambdaFunction is not a function
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:31:27
+    at new Promise (<anonymous>)
+    at Function.Object.<anonymous>.ModuleInvoker.invokeFunction (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:21:16)
+    at Function.Object.<anonymous>.ModuleInvoker.invokeHandler (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:18:30)
+    at LocalSkillInteractor.Object.<anonymous>.LocalSkillInteractor.invoke (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\LocalSkillInteractor.js:24:50)
+    at LocalSkillInteractor.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:65:41)
+    at step (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:32:23)
+    at Object.next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:13:53)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:7:71
+    at new Promise (<anonymous>)
+2021-09-28T04:24:18.393Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-28T04:24:18.393Z error: bst-test            TypeError: lambdaFunction is not a function
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:31:27
+    at new Promise (<anonymous>)
+    at Function.Object.<anonymous>.ModuleInvoker.invokeFunction (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:21:16)
+    at Function.Object.<anonymous>.ModuleInvoker.invokeHandler (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:18:30)
+    at LocalSkillInteractor.Object.<anonymous>.LocalSkillInteractor.invoke (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\LocalSkillInteractor.js:24:50)
+    at LocalSkillInteractor.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:65:41)
+    at step (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:32:23)
+    at Object.next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:13:53)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:7:71
+    at new Promise (<anonymous>)
+2021-09-28T04:24:18.394Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-28T04:24:18.394Z error: bst-test            TypeError: lambdaFunction is not a function
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:31:27
+    at new Promise (<anonymous>)
+    at Function.Object.<anonymous>.ModuleInvoker.invokeFunction (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:21:16)
+    at Function.Object.<anonymous>.ModuleInvoker.invokeHandler (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:18:30)
+    at LocalSkillInteractor.Object.<anonymous>.LocalSkillInteractor.invoke (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\LocalSkillInteractor.js:24:50)
+    at LocalSkillInteractor.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:65:41)
+    at step (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:32:23)
+    at Object.next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:13:53)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:7:71
+    at new Promise (<anonymous>)
