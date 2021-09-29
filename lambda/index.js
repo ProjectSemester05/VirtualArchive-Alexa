@@ -58,6 +58,168 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
+const demoTypeIntentHandler = {
+  canHandle(handlerInput) {
+    //Runs if the demoTypeIntent was invoked verbally OR if the button in the demo_blue.json document was pressed
+    return (
+      (Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+        Alexa.getIntentName(handlerInput.requestEnvelope) ===
+          'demoTypeIntent') ||
+      (Alexa.getRequestType(handlerInput.requestEnvelope) ===
+        'Alexa.Presentation.APL.UserEvent' &&
+        handlerInput.requestEnvelope.request.source.id === 'catalogueButton')
+    );
+  },
+  handle(handlerInput) {
+    var next_demo = 'cheese';
+    var speakOutput = '';
+
+    // load our APL and APLA documents
+    var demo_doc = require(`./documents/${next_demo}DemoMain.json`);
+    var intro_doc = require(`./documents/APLA_docIntro.json`);
+    const doc_data = demo_data[0];
+
+    // set the cheese we're on (numerically)
+    // we'll compute this value when we get navigation commands, but
+    // when you "say cheese," it's all "gouda"
+    var atts = handlerInput.attributesManager.getSessionAttributes();
+    atts.cheeseno = 0;
+
+    if (
+      Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)[
+        'Alexa.Presentation.APL'
+      ]
+    ) {
+      // add a directive to render our simple template
+      handlerInput.responseBuilder.addDirective({
+        type: 'Alexa.Presentation.APL.RenderDocument',
+        token: 'demoDoc', // we need a token so we can target future commands to this document
+        document: demo_doc,
+        datasources: {
+          demo: {
+            type: 'object',
+            properties: doc_data,
+          },
+        },
+      });
+    }
+    
+      handlerInput.responseBuilder.addDirective({
+        type: 'Alexa.Presentation.APLA.RenderDocument',
+        document: intro_doc,
+        datasources: {
+          demo: {
+            type: 'object',
+            properties: doc_data,
+          },
+        },
+      });
+
+    if (!atts.beenHere) {
+        speakOutput =
+          '';
+          atts.beenHere = true;
+      } else {
+          speakOutput = ""
+      }
+    
+    handlerInput.attributesManager.setSessionAttributes(atts);
+
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+      .reprompt(speakOutput)
+      .getResponse();
+  },
+};
+
+const nextBackIntentHandler = {
+  canHandle(handlerInput) {
+    //Runs if the demoTypeIntent was invoked verbally OR if the button in the demo_blue.json document was pressed
+    return (
+      (Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+        Alexa.getIntentName(handlerInput.requestEnvelope) ===
+          'nextBackIntent') ||
+      (Alexa.getRequestType(handlerInput.requestEnvelope) ===
+        'Alexa.Presentation.APL.UserEvent' &&
+        handlerInput.requestEnvelope.request.arguments[0] === 'cheesenext') ||
+      (Alexa.getRequestType(handlerInput.requestEnvelope) ===
+        'Alexa.Presentation.APL.UserEvent' &&
+        handlerInput.requestEnvelope.request.arguments[0] === 'cheeseback')
+    );
+  },
+  handle(handlerInput) {
+    const intro_doc = require("./documents/APLA_docIntro.json");
+
+    // figure out the proper cheese to use and assign to doc_data
+    //get direction
+    var mover = 1; //if it's not backwards, it's forwards
+    if((handlerInput.requestEnvelope.request.hasOwnProperty('intent') && handlerInput.requestEnvelope.request.intent.slots.direction.value === "back")
+      ||(handlerInput.requestEnvelope.request.hasOwnProperty('arguments') && handlerInput.requestEnvelope.request.arguments[0] === 'cheeseback'))
+    {
+        mover = -1;
+    }
+
+    var atts = handlerInput.attributesManager.getSessionAttributes();
+    if (atts.hasOwnProperty('cheeseno')) {
+      atts.cheeseno += mover;
+      if (atts.cheeseno === demo_data.length) atts.cheeseno = 0;
+      if (atts.cheeseno === -1) atts.cheeseno = (demo_data.length - 1);
+    } else {
+      atts.cheeseno = 1;
+    }
+
+    var doc_data = demo_data[atts.cheeseno];
+    handlerInput.attributesManager.setSessionAttributes(atts);
+
+    //add command execute update
+    if (
+      Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)[
+        'Alexa.Presentation.APL'
+      ]
+    ) {
+      handlerInput.responseBuilder.addDirective({
+        type: 'Alexa.Presentation.APL.ExecuteCommands',
+        token: 'demoDoc',
+        commands: [
+          {
+            type: 'SetValue',
+            componentId: 'mainScreen',
+            property: 'bodyText',
+            value: doc_data.bodyText,
+          },
+          {
+            type: 'SetValue',
+            componentId: 'mainScreen',
+            property: 'imageSource',
+            value: doc_data.imageSource,
+          },
+          {
+            type: 'SetValue',
+            componentId: 'mainScreen',
+            property: 'primaryText',
+            value: doc_data.imageCaption,
+          },
+        ],
+      });
+    }    
+    handlerInput.responseBuilder.addDirective({
+        type: 'Alexa.Presentation.APLA.RenderDocument',
+        document: intro_doc,
+        datasources: {
+          demo: {
+            type: 'object',
+            properties: doc_data,
+          },
+        },
+      });
+    
+    const speakOutput = "";
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+      .reprompt('speakOutput')
+      .getResponse();
+  },
+};
 
 const CatalogueAddItemHandler = {
     canHandle(handlerInput) {
