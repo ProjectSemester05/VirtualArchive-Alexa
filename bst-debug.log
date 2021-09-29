@@ -115,3 +115,15 @@ Please provide the correct location of the Interaction Model.
     at Object.next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:13:53)
     at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:7:71
     at new Promise (<anonymous>)
+2021-09-29T08:04:47.304Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-09-29T08:04:47.308Z error: bst-test            Error: Trying to add undefined slot to intent: catalog
+    at SkillRequest.Object.<anonymous>.SkillRequest.slot (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\SkillRequest.js:188:19)
+    at SkillRequest.Object.<anonymous>.SkillRequest.slots (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\SkillRequest.js:206:22)
+    at VirtualAlexa.Object.<anonymous>.VirtualAlexa.intend (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\core\VirtualAlexa.js:62:83)
+    at VirtualAlexaInvoker.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:196:51)
+    at Generator.next (<anonymous>)
+    at asyncGeneratorStep (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:1:192)
+    at _next (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:194)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:364
+    at new Promise (<anonymous>)
+    at VirtualAlexaInvoker.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:97)

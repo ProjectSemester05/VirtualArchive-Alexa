@@ -31,7 +31,7 @@ const LaunchRequestHandler = {
         // let userID = decoded.sub
         
         const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
-           var demo_blue = require('./documents/demo_blue.json');
+        var demo_blue = require('./documents/demo_blue.json');
 
     // Check to make sure the device supports APL
     if (
@@ -326,11 +326,14 @@ const OpenCatalogueHandler = {
                     speechText = speechText.slice(0, -2);
                 }
 
+
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
-
+            if (speechText === ""){
+                speechText = "There are no items in "+catalog
+            }
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -445,6 +448,75 @@ const UpdateReminderHandler = {
     }
 };
 
+const ViewCatalogueOfItemIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewCatalogueOfItemIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+
+        let speechText = "";
+        
+        speechText = "Catalogue of the "+item+" is kitchen items";
+        
+        
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
+const DeleteCatalogueIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteCatalogueIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+
+        let speechText = "";
+        
+        speechText = catalog+" catalogue is deleted";
+        
+        
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
+
+const ViewCataloguesIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewCataloguesIntent';
+    },
+    handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        let speechText = "";
+        
+        speechText = "Catlogues are kitchen items,default catalogue,book collections";
+        
+        
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
+
 const ViewDescriptionHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -489,7 +561,7 @@ const ViewDescriptionHandler = {
 
                 
                 if(speechText === ''){
-                    speechText += 'Invalid item name '
+                    speechText = 'Invalid item name'
                 }
 
             })
@@ -552,7 +624,7 @@ const ViewReminderHandler = {
 
                 
                 if(speechText === ''){
-                    speechText += 'Invalid item name '
+                    speechText = 'Invalid item name'
                 }
 
             })
@@ -707,6 +779,9 @@ exports.handler = Alexa.SkillBuilders.custom()
         UpdateReminderHandler,
         ViewDescriptionHandler,
         ViewReminderHandler,
+        ViewCatalogueOfItemIntentHandler,
+        DeleteCatalogueIntentHandler,
+        ViewCataloguesIntentHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)

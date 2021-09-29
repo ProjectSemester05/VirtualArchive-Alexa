@@ -17,3 +17,35 @@ configuration:
 ---
 - test: Adding an item to a catalogue with description
 - CatalogAddItemIntent catalog=kitchen item=mug description=blue_one: "You Successfully added mug to the kitchen catalogue, saying blue_one"
+
+---
+- test: Creating a catalogue
+- CreateCatalogueIntent catalog=book_collection: "You successfully created book_collection catalogue."
+
+---
+- test: View items in a catalogue
+- OpenCatalogueIntent catalog=book_collection: "There are no items in book_collection"
+
+---
+- test: Update the description of an item
+- UpdateItemIntent item=tom_sawyer catalog=book_collection description=adventurous: "Description of the tom_sawyer in the book_collection catalog is updated to adventurous"
+
+---
+- test: Delete an item
+- DeleteItemIntent item=tom_sawyer catalog=book_collection: "tom_sawyer is deleted from the book_collection"
+
+---
+- test: Adding a reminder to an item
+- AddReminderIntent item=tom_sawyer catalogue=book_collection date=10/02/2021: "You Successfully added a reminder to tom_sawyer in the book_collection catalog. It is 10/02/2021"
+
+---
+- test: Update the reminder of an item
+- UpdateReminderIntent item=tom_sawyer catalog=book_collection reminder=11/02/2021: "Reminder of the tom_sawyer in the book_collection catalog is updated into 11/02/2021"
+
+---
+- test: View the description of an item
+- ViewDescriptionIntent item=tom_sawyer catalog=book_collection: "Invalid item name"
+
+---
+- test: View the reminder of an item
+- ViewReminderIntent item=tom_sawyer catalog=book_collection: "Invalid item name"
