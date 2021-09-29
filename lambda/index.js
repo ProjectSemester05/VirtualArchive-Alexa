@@ -31,7 +31,20 @@ const LaunchRequestHandler = {
         // let userID = decoded.sub
         
         const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
-        
+           var demo_blue = require('./documents/demo_blue.json');
+
+    // Check to make sure the device supports APL
+    if (
+      Alexa.getSupportedInterfaces(handlerInput.requestEnvelope)[
+        'Alexa.Presentation.APL'
+      ]
+    ) {
+      // add a directive to render our simple template
+      handlerInput.responseBuilder.addDirective({
+        type: 'Alexa.Presentation.APL.RenderDocument',
+        document: demo_blue,
+      });
+    }
         
         return handlerInput.responseBuilder
             .speak(speakOutput)
