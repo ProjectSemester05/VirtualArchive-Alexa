@@ -19,6 +19,18 @@
         "id": "CheeseHeadline",
         "primaryText": "${payload.myData.Title}",
         "secondaryText": "${payload.myData.Subtitle}"
+      },
+      {
+        "type": "AlexaDetail",
+        "id": "mainScreen",
+        "detailType": "generic",
+        "detailImageAlignment": "right",
+        "headerTitle": "",
+        "headerSubtitle": "",
+        "imageBlurredBackground": false,
+        "imageAspectRatio": "square",
+        "imageSource": "${payload.demo.properties.imageSource}",
+        "imageCaption": ""
       }
     ]
   }
