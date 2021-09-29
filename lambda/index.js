@@ -2,9 +2,10 @@ const Alexa = require('ask-sdk-core');
 const AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 const dynamoDBTableName = "CatalogueDB";
+const demo_data = require('./documents/cheeses.json');
 // const jwt = require("jwt-decode")
 //const main = require('./main.json');
-// const getRemoteData = require('./api-data.js');
+// const getRemoteData = require('./api-data.js');http://localhost/phpmyadmin/sql.php?server=1&db=db_project&table=railway_schedule&pos=0
 
 const getRemoteData = (url) => new Promise((resolve, reject) => {
   const client = url.startsWith('https') ? require('https') : require('http');
