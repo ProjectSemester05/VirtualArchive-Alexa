@@ -1,1389 +1,1426 @@
 {
-  "interactionModel": {
-      "languageModel": {
-          "invocationName": "virtual archive",
-          "intents": [
-              {
-                  "name": "AMAZON.CancelIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.HelpIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.StopIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.NavigateHomeIntent",
-                  "samples": []
-              },
-              {
-                  "name": "AMAZON.FallbackIntent",
-                  "samples": []
-              },
-              {
-                  "name": "CatalogAddItemIntent",
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "it is {item}",
-                              "{item}",
-                              "the item is {item}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "description",
-                          "type": "AMAZON.FirstName",
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "in {catalog}",
-                              "name is {catalog}",
-                              "{catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "Add {item} to {catalog} saying {description}",
-                      "Add {item} to {catalog}",
-                      "Add Item"
-                  ]
-              },
-              {
-                  "name": "OpenCatalogueIntent",
-                  "slots": [
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "it is {catalog}",
-                              "catalogue is {catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "view items in {catalog}",
-                      "display {catalog}",
-                      "open catalogue"
-                  ]
-              },
-              {
-                  "name": "CreateCatalogueIntent",
-                  "slots": [
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "name is {catalog}",
-                              "{catalog}",
-                              "it is {catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "new catalogue {catalog}",
-                      "create a catalogue {catalog}",
-                      "create a catalogue"
-                  ]
-              },
-              {
-                  "name": "UpdateItemIntent",
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "item is {item}",
-                              "{item}",
-                              "it is {item}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "it is {catalog}",
-                              "{catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "description",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "it is {description}",
-                              "description is {description}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "update description",
-                      "update description of {item} in {catalog} into {description} ",
-                      "change description of {item} in {catalog} into {description} "
-                  ]
-              },
-              {
-                  "name": "AddReminderIntent",
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "item is {item}",
-                              "it is {item}",
-                              "{item}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "catalogue",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "{catalogue}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "date",
-                          "type": "AMAZON.DATE",
-                          "samples": [
-                              "it is {date}",
-                              "{date}",
-                              "reminder is {date}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "add reminder to {item}",
-                      "add reminder",
-                      "add reminder to {item} in {catalogue} "
-                  ]
-              },
-              {
-                  "name": "UpdateReminderIntent",
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "{item}",
-                              "it is {item}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "{catalog}",
-                              "it is {catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "reminder",
-                          "type": "AMAZON.DATE",
-                          "samples": [
-                              "reminder is {reminder}",
-                              "it is {reminder}",
-                              "{reminder}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "update reminder",
-                      "update reminder of {item} in {catalog}"
-                  ]
-              },
-              {
-                  "name": "DeleteItemIntent",
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "item name is {item}",
-                              "it is {item}",
-                              "{item}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "catalogue name is {catalog}",
-                              "it is {catalog}",
-                              "{catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "remove {item} in {catalog}",
-                      "delete {item} in {catalog}",
-                      "remove {item} from {catalog}",
-                      "delete {item} from {catalog}",
-                      "delete item"
-                  ]
-              },
-              {
-                  "name": "ViewDescriptionIntent",
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "it is {item}",
-                              "{item}",
-                              "in {item}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "in {catalog}",
-                              "it is {catalog}",
-                              "{catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "tell me the description of {item} in {catalog}",
-                      "tell me the description of {item}",
-                      "tell me the description",
-                      "what is the description",
-                      "what is the description of {item}",
-                      "what is the description of {item} in {catalog}"
-                  ]
-              },
-              {
-                  "name": "ViewReminderIntent",
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "it is {item}",
-                              "in {item}",
-                              "{item}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "it is {catalog}",
-                              "in {catalog}",
-                              "{catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "what is the reminder of {item}",
-                      "what is the reminder",
-                      "what is the reminder of {item} in {catalog}"
-                  ]
-              },
-              {
-                  "name": "demoTypeIntent",
-                  "slots": [
-                      {
-                          "name": "dtype",
-                          "type": "demoType"
-                      }
-                  ],
-                  "samples": [
-                      "the {dtype} demo",
-                      "demo {dtype}"
-                  ]
-              },
-              {
-                  "name": "nextBackIntent",
-                  "slots": [
-                      {
-                          "name": "direction",
-                          "type": "direction"
-                      }
-                  ],
-                  "samples": [
-                      "go {direction}",
-                      "{direction}",
-                      "{direction} button",
-                      "move {direction}"
-                  ]
-              },
-              {
-                  "name": "ViewCatalogueOfItemIntent",
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "item name is {item}",
-                              "{item}",
-                              "it is {item}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "what is the catalogue name",
-                      "catalogue name of {item}",
-                      "what is the catalogue of {item}"
-                  ]
-              },
-              {
-                  "name": "DeleteCatalogueIntent",
-                  "slots": [
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "samples": [
-                              "catalogue name is {catalog}",
-                              "{catalog}",
-                              "it is {catalog}"
-                          ],
-                          "multipleValues": {
-                              "enabled": true
-                          }
-                      }
-                  ],
-                  "samples": [
-                      "remove catalogue {catalog}",
-                      "delete catalogue {catalog}",
-                      "delete a catalogue"
-                  ]
-              },
-              {
-                  "name": "ViewCataloguesIntent",
-                  "slots": [],
-                  "samples": [
-                      "view all the catalogues",
-                      "show all the catalogues"
-                  ]
-              }
-          ],
-          "types": [
-              {
-                  "name": "itemType",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "lord of the rings"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "harry potter"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "the book"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "table lamp"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "kettle"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "red mug"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "the pen"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "pen tool"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "spoon"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "bottle"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "bike"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "car"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "CatalogueType",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "books"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "book collection"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "necessary tools"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "lining room"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "table"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "kitchen items"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "garage"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "descriptions",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "table spoon"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "green car"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "demoType",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "display catalogue"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "nextback",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "back",
-                              "synonyms": [
-                                  "last",
-                                  "previous"
-                              ]
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "next",
-                              "synonyms": [
-                                  "ahead",
-                                  "forward"
-                              ]
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "AMAZON.FirstName",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "assignment"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "thesis"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "magazine"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "car"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "bottle"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "bike"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "the pen"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "red mug"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "kettle"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "table lamp"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "the book"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "educational"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "garage"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "kitchen items"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "table"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "living room"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "necessary tools"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "book collection"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "harry potter"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "lord of the rings"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "pen tool"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "direction",
-                  "values": [
-                      {
-                          "name": {
-                              "value": "next"
-                          }
-                      },
-                      {
-                          "name": {
-                              "value": "back"
-                          }
-                      }
-                  ]
-              }
-          ]
-      },
-      "dialog": {
-          "intents": [
-              {
-                  "name": "CatalogAddItemIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1027512544964.273647361202"
-                          }
-                      },
-                      {
-                          "name": "description",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": false,
-                          "prompts": {}
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.624075704560.37518849433"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "OpenCatalogueIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1308805482604.1261069590672"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "CreateCatalogueIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1605220798292.963940892316"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "UpdateItemIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1312091613111.437866245111"
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1324233739962.341815217838"
-                          }
-                      },
-                      {
-                          "name": "description",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1207734119729.124463904088"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "AddReminderIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1508422375977.699530392408"
-                          }
-                      },
-                      {
-                          "name": "catalogue",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1508422375977.594649941804"
-                          }
-                      },
-                      {
-                          "name": "date",
-                          "type": "AMAZON.DATE",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1508422375977.1430887811625"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "UpdateReminderIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.786375693506.244791962517"
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1597244993819.1265684901558"
-                          }
-                      },
-                      {
-                          "name": "reminder",
-                          "type": "AMAZON.DATE",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.785282453882.176414854646"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "DeleteItemIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.234611238163.262636859977"
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.234611238163.1030169266236"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "ViewDescriptionIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1411552887839.110214913936"
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1411552887839.1451325821214"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "ViewReminderIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1526112623395.1548797091222"
-                          }
-                      },
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.1526112623395.1322157979624"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "ViewCatalogueOfItemIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "item",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": false,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "elicitation": "Elicit.Slot.217180096152.990264852998"
-                          }
-                      }
-                  ]
-              },
-              {
-                  "name": "DeleteCatalogueIntent",
-                  "confirmationRequired": false,
-                  "prompts": {},
-                  "slots": [
-                      {
-                          "name": "catalog",
-                          "type": "AMAZON.FirstName",
-                          "confirmationRequired": true,
-                          "elicitationRequired": true,
-                          "prompts": {
-                              "confirmation": "Confirm.Slot.288012993957.1425639790003",
-                              "elicitation": "Elicit.Slot.288012993957.1425639790003"
-                          }
-                      }
-                  ]
-              }
-          ],
-          "delegationStrategy": "ALWAYS"
-      },
-      "prompts": [
-          {
-              "id": "Elicit.Slot.1027512544964.273647361202",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Item?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "What is the Item?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "What item do you want to save?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1308805482604.1261069590672",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Tell me the catalogue"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1334738160171.1522181436247",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the name of the catalogue?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "tell me the name of the catalogue"
-                  }
-              ]
-          },
-          {
-              "id": "Slot.Validation.1334738160171.1522181436247.494727923314",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "need two words"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1207734119729.124463904088",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "Tell me the new description"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the new description?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1508422375977.594649941804",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the catalogue?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "catalogue name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "to which catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1508422375977.699530392408",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "item name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the item?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "to which item?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1508422375977.1430887811625",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "tell me the reminder"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the reminder?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.786375693506.244791962517",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the item name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what item?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1597244993819.1265684901558",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "in which catalogue?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the catalogue name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.785282453882.176414854646",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "provide new reminder details"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the new reminder?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1312091613111.437866245111",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the item name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what item?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1324233739962.341815217838",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "in which catalogue?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the catalogue name?"
-                  }
-              ]
-          },
-          {
-              "id": "Confirm.Intent.792050071351",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "is it {catalog}"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.624075704560.37518849433",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what catalogue?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the name of the catalogue?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "in which catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1102921659113.691959566050",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "catalogue name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the catalogue name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "which catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1102921659113.339884893352",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the name of the item?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "which item?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.121618052407.1200999900182",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "item name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "which item?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the item name?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.121618052407.382972454509",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "catalogue name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "in which catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.234611238163.262636859977",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the item name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "which item?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.234611238163.1030169266236",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the catalogue name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "in which catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1605220798292.963940892316",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "tell me the catalogue name"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the name of the catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1411552887839.110214913936",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the item name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "in which item?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1411552887839.1451325821214",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the catalogue name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "in which catalogue?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1526112623395.1548797091222",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "what is the item name?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "in which item?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.1526112623395.1322157979624",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "in which catalogue?"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the catalogue name?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.217180096152.990264852998",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "tell me the item name"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "in which item?"
-                  }
-              ]
-          },
-          {
-              "id": "Elicit.Slot.288012993957.1425639790003",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "tell me the catalogue"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "which catalogue"
-                  },
-                  {
-                      "type": "PlainText",
-                      "value": "what is the catalogue name?"
-                  }
-              ]
-          },
-          {
-              "id": "Confirm.Slot.288012993957.1425639790003",
-              "variations": [
-                  {
-                      "type": "PlainText",
-                      "value": "are you sure to remove the {catalog} catalogue?"
-                  }
-              ]
-          }
-      ]
-  }
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "virtual archive",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "CatalogAddItemIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {item}",
+                                "{item}",
+                                "the item is {item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "in {catalog}",
+                                "name is {catalog}",
+                                "{catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "description",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "{description}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "Add {item} to {catalog} saying {description}",
+                        "Add {item} to {catalog}",
+                        "Add Item"
+                    ]
+                },
+                {
+                    "name": "OpenCatalogueIntent",
+                    "slots": [
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {catalog}",
+                                "catalogue is {catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "view items in {catalog}",
+                        "display {catalog}",
+                        "open catalogue"
+                    ]
+                },
+                {
+                    "name": "CreateCatalogueIntent",
+                    "slots": [
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "name is {catalog}",
+                                "{catalog}",
+                                "it is {catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "new catalogue {catalog}",
+                        "create a catalogue {catalog}",
+                        "create a catalogue"
+                    ]
+                },
+                {
+                    "name": "UpdateItemIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "item is {item}",
+                                "{item}",
+                                "it is {item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {catalog}",
+                                "{catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "description",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {description}",
+                                "description is {description}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "update description",
+                        "update description of {item} in {catalog} into {description} ",
+                        "change description of {item} in {catalog} into {description} "
+                    ]
+                },
+                {
+                    "name": "AddReminderIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "item is {item}",
+                                "it is {item}",
+                                "{item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "catalogue",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "{catalogue}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "it is {date}",
+                                "{date}",
+                                "reminder is {date}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "add reminder to {item}",
+                        "add reminder",
+                        "add reminder to {item} in {catalogue} "
+                    ]
+                },
+                {
+                    "name": "UpdateReminderIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "{item}",
+                                "it is {item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "{catalog}",
+                                "it is {catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "reminder",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "reminder is {reminder}",
+                                "it is {reminder}",
+                                "{reminder}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "update reminder",
+                        "update reminder of {item} in {catalog}"
+                    ]
+                },
+                {
+                    "name": "DeleteItemIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "item name is {item}",
+                                "it is {item}",
+                                "{item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "catalogue name is {catalog}",
+                                "it is {catalog}",
+                                "{catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "remove {item} in {catalog}",
+                        "delete {item} in {catalog}",
+                        "remove {item} from {catalog}",
+                        "delete {item} from {catalog}",
+                        "delete item"
+                    ]
+                },
+                {
+                    "name": "ViewDescriptionIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {item}",
+                                "{item}",
+                                "in {item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "in {catalog}",
+                                "it is {catalog}",
+                                "{catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "tell me the description of {item} in {catalog}",
+                        "tell me the description of {item}",
+                        "tell me the description",
+                        "what is the description",
+                        "what is the description of {item}",
+                        "what is the description of {item} in {catalog}"
+                    ]
+                },
+                {
+                    "name": "ViewReminderIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {item}",
+                                "in {item}",
+                                "{item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {catalog}",
+                                "in {catalog}",
+                                "{catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "what is the reminder of {item}",
+                        "what is the reminder",
+                        "what is the reminder of {item} in {catalog}"
+                    ]
+                },
+                {
+                    "name": "demoTypeIntent",
+                    "slots": [
+                        {
+                            "name": "dtype",
+                            "type": "demoType"
+                        }
+                    ],
+                    "samples": [
+                        "the {dtype} demo",
+                        "demo {dtype}"
+                    ]
+                },
+                {
+                    "name": "nextBackIntent",
+                    "slots": [
+                        {
+                            "name": "direction",
+                            "type": "direction"
+                        }
+                    ],
+                    "samples": [
+                        "go {direction}",
+                        "{direction}",
+                        "{direction} button",
+                        "move {direction}"
+                    ]
+                },
+                {
+                    "name": "ViewCatalogueOfItemIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "item name is {item}",
+                                "{item}",
+                                "it is {item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "catalogue name of {item}",
+                        "what is the catalogue of {item}"
+                    ]
+                },
+                {
+                    "name": "DeleteCatalogueIntent",
+                    "slots": [
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "catalogue name is {catalog}",
+                                "{catalog}",
+                                "it is {catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "remove catalogue {catalog}",
+                        "delete catalogue {catalog}",
+                        "delete a catalogue"
+                    ]
+                },
+                {
+                    "name": "ViewCataloguesIntent",
+                    "slots": [],
+                    "samples": [
+                        "view all the catalogues",
+                        "show all the catalogues"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "itemType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "lord of the rings"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "harry potter"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the book"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "table lamp"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "kettle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "red mug"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the pen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pen tool"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spoon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bottle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bike"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "car"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "CatalogueType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "books"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "book collection"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "necessary tools"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lining room"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "table"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "kitchen items"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "garage"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "descriptions",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "table spoon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "green car"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "demoType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "display catalogue"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "nextback",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "back",
+                                "synonyms": [
+                                    "last",
+                                    "previous"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "next",
+                                "synonyms": [
+                                    "ahead",
+                                    "forward"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "AMAZON.FirstName",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "ceramic plate"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a valuable plate"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "assignment"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "thesis"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "magazine"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "car"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bottle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "bike"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the pen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "red mug"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "kettle"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "table lamp"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the book"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "educational"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "garage"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "kitchen items"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "table"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "living room"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "necessary tools"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "book collection"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "harry potter"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "lord of the rings"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pen tool"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "direction",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "next"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "back"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CatalogAddItemIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1027512544964.273647361202"
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.624075704560.37518849433"
+                            }
+                        },
+                        {
+                            "name": "description",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.178444660664.1014731732892"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "OpenCatalogueIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1308805482604.1261069590672"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "CreateCatalogueIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1605220798292.963940892316"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "UpdateItemIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1312091613111.437866245111"
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1324233739962.341815217838"
+                            }
+                        },
+                        {
+                            "name": "description",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1207734119729.124463904088"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "AddReminderIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1508422375977.699530392408"
+                            }
+                        },
+                        {
+                            "name": "catalogue",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1508422375977.594649941804"
+                            }
+                        },
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1508422375977.1430887811625"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "UpdateReminderIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.786375693506.244791962517"
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1597244993819.1265684901558"
+                            }
+                        },
+                        {
+                            "name": "reminder",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.785282453882.176414854646"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DeleteItemIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.234611238163.262636859977"
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.4536967466.932436220853",
+                                "elicitation": "Elicit.Slot.234611238163.1030169266236"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ViewDescriptionIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1411552887839.110214913936"
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1411552887839.1451325821214"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ViewReminderIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1526112623395.1548797091222"
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1526112623395.1322157979624"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ViewCatalogueOfItemIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.217180096152.990264852998"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DeleteCatalogueIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.288012993957.1425639790003",
+                                "elicitation": "Elicit.Slot.288012993957.1425639790003"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1027512544964.273647361202",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the item name"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Item name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "What is the Item name?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1308805482604.1261069590672",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Tell me the catalogue"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1334738160171.1522181436247",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the name of the catalogue?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the name of the catalogue"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1334738160171.1522181436247.494727923314",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "need two words"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1207734119729.124463904088",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Tell me the new description"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the new description?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1508422375977.594649941804",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the catalogue?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "catalogue name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "to which catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1508422375977.699530392408",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "item name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the item?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "to which item?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1508422375977.1430887811625",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the reminder"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the reminder?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.786375693506.244791962517",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the item name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what item?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1597244993819.1265684901558",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "in which catalogue?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the catalogue name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.785282453882.176414854646",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "provide new reminder date"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the new reminder?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1312091613111.437866245111",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the item name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what item?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1324233739962.341815217838",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "in which catalogue?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the catalogue name?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.792050071351",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "is it {catalog}"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.624075704560.37518849433",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "catalogue name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the name of the catalogue?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "to which catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1102921659113.691959566050",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "catalogue name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the catalogue name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "which catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1102921659113.339884893352",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the name of the item?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "which item?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.121618052407.1200999900182",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "item name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "which item?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the item name?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.121618052407.382972454509",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "catalogue name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "in which catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.234611238163.262636859977",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the item name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "which item?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.234611238163.1030169266236",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the catalogue name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "in which catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1605220798292.963940892316",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the catalogue name"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the name of the catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1411552887839.110214913936",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the item name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "in which item?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1411552887839.1451325821214",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the catalogue name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "in which catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1526112623395.1548797091222",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the item name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "in which item?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1526112623395.1322157979624",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "in which catalogue?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the catalogue name?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.217180096152.990264852998",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the item name"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "in which item?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.288012993957.1425639790003",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the catalogue"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "which catalogue"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the catalogue name?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.288012993957.1425639790003",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "are you sure to remove the {catalog} catalogue? Say cancel otherwise"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.4536967466.932436220853",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "are you sure to delete {item} from {catalog} .Say cancel otherwise"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.178444660664.1014731732892",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me a description to add"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the description?"
+                    }
+                ]
+            }
+        ]
+    }
 }
