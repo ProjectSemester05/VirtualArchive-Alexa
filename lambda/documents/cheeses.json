@@ -1,0 +1,17 @@
+[
+    {
+        "bodyText": "\u2022 pen,  driving license, calculator, gaming console",
+        "imageSource": "https://static.wikia.nocookie.net/hildatheseries/images/6/6a/Trolberg_Library.png",
+        "imageCaption": "Default Catalogue"
+    },
+    {
+        "bodyText":"forks, pan, knife",
+        "imageSource": "https://pngimage.net/wp-content/uploads/2018/06/kitchen-cabinet-png-2.png",
+        "imageCaption": "Kitchen Items"
+    },
+    {
+        "bodyText":"Tom Sawyer, Madol Doowa, Sherlock Holmes",
+        "imageSource": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/teen-books-1617830351.png",
+        "imageCaption": "Book Collection"
+    }
+]
