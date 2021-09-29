@@ -507,7 +507,7 @@ const ViewCataloguesIntentHandler = {
 
         let speechText = "";
         
-        speechText = "Catlogues are kitchen items,default catalogue,book collections";
+        speechText = "Catalogues: kitchen items,default catalogue,book collections";
         
         
         return handlerInput.responseBuilder
@@ -568,7 +568,9 @@ const ViewDescriptionHandler = {
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
-
+            if(speechText === ''){
+                speechText = 'Invalid item name'
+            }
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -645,7 +647,9 @@ const ViewReminderHandler = {
                 
             }
 
-
+            if(speechText === ''){
+                speechText = 'Invalid item name'
+            }
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -676,7 +680,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = 'Execution Cancelled';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)

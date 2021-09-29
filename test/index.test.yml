@@ -49,3 +49,23 @@ configuration:
 ---
 - test: View the reminder of an item
 - ViewReminderIntent item=tom_sawyer catalog=book_collection: "Invalid item name"
+
+---
+- test: View the catalogue of an item
+- ViewCatalogueOfItemIntent item=mug: "Catalogue of the mug is kitchen items"
+
+---
+- test: Delete a catalogue
+- DeleteCatalogueIntent catalog=book_collection: "book_collection catalogue is deleted"
+
+---
+- test: View all catalogues
+- ViewCataloguesIntent : "Catalogues: kitchen items,default catalogue,book collections"
+
+---
+- test: Cancel command
+- AMAZON.CancelIntent : "Execution Cancelled"
+
+---
+- test: Stop command
+- AMAZON.StopIntent : "Execution Cancelled"
