@@ -1,29 +1,25 @@
 const Alexa = require('ask-sdk-core');
 const AWS = require('aws-sdk');
-const axios = require('axios');
 const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 const dynamoDBTableName = "CatalogueDB";
 const demo_data = require('./documents/demo_data.json');
 const jwt = require("jwt-decode")
 //const main = require('./main.json');
-const {getRemoteData} = require('./api/api-get-data.js');
-const url = 'https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/';
+// const getRemoteData = require('./api-data.js');
 
-
-const postRequest = async (userID, catalog) => {
-    try {
-        const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/new/${userID}`,
-            {
-                CatalogueName: catalog
-            }
-            );
-        let data = res.data;
-        // console.log("in : ",data);
-        return res
-    }catch (err) {
-        console.log(err);
+const getRemoteData = (url) => new Promise((resolve, reject) => {
+  const client = url.startsWith('https') ? require('https') : require('http');
+  const request = client.get(url, (response) => {
+    if (response.statusCode < 200 || response.statusCode > 299) {
+      reject(new Error(`Failed with status code: ${response.statusCode}`));
     }
-}
+    const body = [];
+    response.on('data', (chunk) => body.push(chunk));
+    response.on('end', () => resolve(body.join('')));
+  });
+  request.on('error', (err) => reject(err));
+});
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -302,19 +298,13 @@ const CreateCatalogueHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CreateCatalogueIntent';
     },
-    async handle(handlerInput) {
-        const { accessToken } = handlerInput.requestEnvelope.session.user;
-        let decoded = jwt(accessToken)
-        let userID = decoded.sub
+    handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         
-
-        
-        await postRequest(userID, catalog);
         let speechText = ""
         
         // return HelpIntentHandler.handle(handlerInput);
