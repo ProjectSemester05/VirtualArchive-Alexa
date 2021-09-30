@@ -316,7 +316,11 @@ const CreateCatalogueHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CreateCatalogueIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
+        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -325,6 +329,7 @@ const CreateCatalogueHandler = {
         
         let speechText = ""
         
+        await postRequest(userID,catalog);
         // return HelpIntentHandler.handle(handlerInput);
         speechText = "You successfully created "+ catalog +" catalogue."
 
