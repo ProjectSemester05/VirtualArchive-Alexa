@@ -42,6 +42,8 @@ const LaunchRequestHandler = {
                 let Reminders = data.Reminders;
                 // console.log(Reminders)
                 Reminders.forEach(remind => {
+                    console.log(remind.ReminderDate)
+                    console.log(date)
                     if(remind.ReminderDate !== date){
                         count = count +1
                     }
@@ -53,7 +55,7 @@ const LaunchRequestHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
             
-        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.'+date;
+        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
         if(count > 1 ){
             speakOutput = speakOutput + ' You have '+count+' reminders today';
         }
