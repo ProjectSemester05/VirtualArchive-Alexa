@@ -651,7 +651,6 @@ const ViewTodayReminderIntentHandler = {
             })
         
         for(const uuid of itemUUID_array){
-            speechText = speechText + uuid +' '
             await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/${uuid}`)
             .then((response) => {
                 const data = JSON.parse(response);
