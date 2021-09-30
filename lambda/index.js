@@ -313,9 +313,9 @@ const OpenCatalogueHandler = {
 
                 let allItems = data.Items
 
-                if (allItems.length === 0) {
-                    speechText = "There are no items in "+catalog
-                } else {
+                // if (allItems.length === 0) {
+                //     speechText = "There are no items in "+catalog
+                // } else {
 
                     speechText = "Items in "+catalog+" are, "
 
@@ -324,7 +324,7 @@ const OpenCatalogueHandler = {
                     });
 
                     speechText = speechText.slice(0, -2);
-                }
+                //}
 
 
             })
