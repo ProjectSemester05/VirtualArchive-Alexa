@@ -30,7 +30,7 @@ const LaunchRequestHandler = {
         let decoded = jwt(accessToken)
         let userID = decoded.sub
         
-        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.'+userID;
+        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
         var demo_blue = require('./documents/demo_blue.json');
 
     // Check to make sure the device supports APL
