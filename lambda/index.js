@@ -6,7 +6,7 @@ const dynamoDBTableName = "CatalogueDB";
 const demo_data = require('./documents/demo_data.json');
 const jwt = require("jwt-decode")
 //const main = require('./main.json');
-const {getRemoteData} = require('./api-get-data.js');
+const {getRemoteData} = require('./api/api-get-data.js');
 const url = 'https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/';
 
 
