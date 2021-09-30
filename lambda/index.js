@@ -32,8 +32,11 @@ const LaunchRequestHandler = {
         
         let count = 0
         var today = new Date();
-
-        var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+        var month = today.getMonth()+1
+        if(month.length === 1){
+            month = '0'+month
+        }
+        var date = today.getDate()+'-'+month+'-'+today.getFullYear();
         
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
@@ -42,8 +45,8 @@ const LaunchRequestHandler = {
                 let Reminders = data.Reminders;
                 // console.log(Reminders)
                 Reminders.forEach(remind => {
-                    console.log(remind.ReminderDate)
-                    console.log(date)
+                    // console.log(remind.ReminderDate)
+                    // console.log(date)
                     if(remind.ReminderDate !== date){
                         count = count +1
                     }
@@ -55,7 +58,7 @@ const LaunchRequestHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
             
-        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.'+date;
+        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
         if(count > 1 ){
             speakOutput = speakOutput + ' You have '+count+' reminders today';
         }
