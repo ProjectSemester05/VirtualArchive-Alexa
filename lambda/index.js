@@ -297,18 +297,21 @@ const CatalogueAddItemHandler = {
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         const description = Alexa.getSlotValue(requestEnvelope, 'description');
         
+        let catalogUUID =''
+        
         await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
     
-                let catalogUUID = data.Catalogues[0].UUID;
+                catalogUUID = data.Catalogues[0].UUID;
+                postRequestItem(userID,catalogUUID,item,description);
     
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
         
-        await postRequestItem(userID,catalogUUID,item,description);
+        
         
         let speechText = ""
         
