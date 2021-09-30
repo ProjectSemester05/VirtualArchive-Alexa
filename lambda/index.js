@@ -301,7 +301,7 @@ const OpenCatalogueHandler = {
                 const data = JSON.parse(response);
 
                 catalogUUID = data.Catalogues.UUID;
-
+                speechText = speechText +catalogUUID;
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
