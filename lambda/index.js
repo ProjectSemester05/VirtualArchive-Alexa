@@ -53,7 +53,7 @@ const LaunchRequestHandler = {
         if(count > 1 ){
             speakOutput = speakOutput + ' You have '+count+' reminders today';
         }
-        else if(count == 1){
+        else if(count === 1){
             speakOutput = speakOutput + ' You have '+count+' reminder today';
         }
         
