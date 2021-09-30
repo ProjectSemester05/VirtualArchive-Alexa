@@ -58,7 +58,7 @@ const LaunchRequestHandler = {
         if(month < 10){
             month = '0'+month
         }
-        today_date = today.getDate()
+        let today_date = today.getDate()
         if(today_date < 10){
             today_date = '0'+today_date
         }
