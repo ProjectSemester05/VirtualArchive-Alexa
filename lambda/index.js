@@ -521,13 +521,25 @@ const DeleteCatalogueIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteCatalogueIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+        
+        let catalogUUID = '';
+        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+            .then((response) => {
+                const data = JSON.parse(response);
 
+                catalogUUID = data.Catalogues[0].UUID;
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+        })
+        let url = 'https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/' + catalogUUID;
+        await deleteRequest(url);
         let speechText = "";
         
         speechText = catalog+" catalogue is deleted";
