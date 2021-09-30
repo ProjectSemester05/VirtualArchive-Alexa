@@ -1,0 +1,10 @@
+exports.deleteRequest = async (url) => {
+  try {
+    let response = await axios.delete(url,{},getHeaderToken());
+    console.log(response);
+    return {...response.data, success: true};
+
+  } catch (error) {
+    return {...error, success: false};
+  }
+};
