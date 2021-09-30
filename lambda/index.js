@@ -33,7 +33,10 @@ const LaunchRequestHandler = {
         let count = 0
         var today = new Date();
         var month = today.getMonth()+1
-        month = '0'+month
+        if(month < 10){
+            month = '0'+month
+        }
+        
         var date = today.getDate()+'-'+month+'-'+today.getFullYear();
         
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
