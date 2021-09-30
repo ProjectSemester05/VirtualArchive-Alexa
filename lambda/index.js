@@ -1,6 +1,6 @@
 const Alexa = require('ask-sdk-core');
 const AWS = require('aws-sdk');
-const axios = require('axios');
+// const axios = require('axios');
 const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 const dynamoDBTableName = "CatalogueDB";
 const demo_data = require('./documents/demo_data.json');
