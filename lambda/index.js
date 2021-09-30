@@ -6,20 +6,20 @@ const dynamoDBTableName = "CatalogueDB";
 const demo_data = require('./documents/demo_data.json');
 const jwt = require("jwt-decode")
 //const main = require('./main.json');
-// const getRemoteData = require('./api-data.js');
+const {getRemoteData} = require('./api-data.js');
 
-const getRemoteData = (url) => new Promise((resolve, reject) => {
-  const client = url.startsWith('https') ? require('https') : require('http');
-  const request = client.get(url, (response) => {
-    if (response.statusCode < 200 || response.statusCode > 299) {
-      reject(new Error(`Failed with status code: ${response.statusCode}`));
-    }
-    const body = [];
-    response.on('data', (chunk) => body.push(chunk));
-    response.on('end', () => resolve(body.join('')));
-  });
-  request.on('error', (err) => reject(err));
-});
+// const getRemoteData = (url) => new Promise((resolve, reject) => {
+//   const client = url.startsWith('https') ? require('https') : require('http');
+//   const request = client.get(url, (response) => {
+//     if (response.statusCode < 200 || response.statusCode > 299) {
+//       reject(new Error(`Failed with status code: ${response.statusCode}`));
+//     }
+//     const body = [];
+//     response.on('data', (chunk) => body.push(chunk));
+//     response.on('end', () => resolve(body.join('')));
+//   });
+//   request.on('error', (err) => reject(err));
+// });
 
 
 const postRequest = async (userID, catalog) => {
