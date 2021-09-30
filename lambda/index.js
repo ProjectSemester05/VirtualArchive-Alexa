@@ -24,7 +24,7 @@ const postRequest = async (userID, catalog) => {
     }
 }
 
-const postRequestItem = async (userID, catalog,item,description) => {
+const postRequestItem = async (userID,catalog,item,description) => {
     try {
         const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/new`,
             {
