@@ -50,8 +50,11 @@ const LaunchRequestHandler = {
             })
             
         let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
-        if(count > 0 ){
-            speakOutput = speakOutput + ' You have '+count+' reminders today'
+        if(count > 1 ){
+            speakOutput = speakOutput + ' You have '+count+' reminders today';
+        }
+        else if(count == 1){
+            speakOutput = speakOutput + ' You have '+count+' reminder today';
         }
         
         
