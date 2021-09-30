@@ -633,6 +633,7 @@ const ViewTodayReminderIntentHandler = {
         let decoded = jwt(accessToken)
         let userID = decoded.sub
         
+        const itemUUID_array = []
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
@@ -641,14 +642,30 @@ const ViewTodayReminderIntentHandler = {
                 
                 reminders.forEach(remind=> {
                     let itemuuid = remind.ItemUUID;
-                    speechText = speechText + itemuuid;
-
+                    itemUUID_array.push(itemuuid)
                 });
 
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
-        })
+            })
+            
+        for(const uuid of itemUUID_array){
+            await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${uuid}`)
+            .then((response) => {
+                const data = JSON.parse(response);
+
+                let name = data.item.ItemName;
+                speechText = speechText + ',' +name;
+
+                
+
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+        }
         // speechText = "Catalogues: kitchen items,default catalogue,book collections";
         
         
