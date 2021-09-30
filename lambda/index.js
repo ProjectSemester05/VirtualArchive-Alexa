@@ -301,7 +301,6 @@ const OpenCatalogueHandler = {
                 const data = JSON.parse(response);
 
                 catalogUUID = data.Catalogues[0].UUID;
-                speechText = speechText +catalogUUID;
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
@@ -313,18 +312,18 @@ const OpenCatalogueHandler = {
 
                 let allItems = data.Items
 
-                // if (allItems.length === 0) {
-                //     speechText = "There are no items in "+catalog
-                // } else {
+                if (allItems.length === 0) {
+                    speechText = "There are no items in "+catalog
+                } else {
 
-                    speechText = "Items in "+catalog+" are, "
+                    speechText = "Items in "+catalog+" are "
 
                     allItems.forEach(item => {
                         speechText = speechText+item.ItemName+", "
                     });
 
                     speechText = speechText.slice(0, -2);
-                //}
+                }
 
 
             })
