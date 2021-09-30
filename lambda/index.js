@@ -24,6 +24,24 @@ const postRequest = async (userID, catalog) => {
     }
 }
 
+const postRequestItem = async (userID, catalog,item,description) => {
+    try {
+        const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/new`,
+            {
+                ItemName: item,
+                CatalogueUUID:"{{catalogueUUID}}",
+                Description: description,
+                UserID: userID
+            }
+            );
+        let data = res.data;
+        // console.log("in : ",data);
+        return res
+    }catch (err) {
+        console.log(err);
+    }
+}
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
