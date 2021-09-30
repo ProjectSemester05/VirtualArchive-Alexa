@@ -673,7 +673,7 @@ const ViewTodayReminderIntentHandler = {
             })
         }
         // speechText = "Catalogues: kitchen items,default catalogue,book collections";
-        speechText = speechText.slice(0, -2);
+        speechText = speechText.slice(0, -1);
         
         return handlerInput.responseBuilder
             .speak(speechText)
