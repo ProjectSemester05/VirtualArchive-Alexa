@@ -1,5 +1,6 @@
 const Alexa = require('ask-sdk-core');
 const AWS = require('aws-sdk');
+const axios = require('axios');
 const ddb = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 const dynamoDBTableName = "CatalogueDB";
 const demo_data = require('./documents/demoData.json');
@@ -19,6 +20,22 @@ const getRemoteData = (url) => new Promise((resolve, reject) => {
   });
   request.on('error', (err) => reject(err));
 });
+
+
+const postRequest = async (userID, catalog) => {
+    try {
+        const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/new/${userID}`,
+            {
+                CatalogueName: catalog
+            }
+            );
+        let data = res.data;
+        // console.log("in : ",data);
+        return res
+    }catch (err) {
+        console.log(err);
+    }
+}
 
 
 const LaunchRequestHandler = {
