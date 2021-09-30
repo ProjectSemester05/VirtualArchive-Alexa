@@ -36,7 +36,7 @@ const LaunchRequestHandler = {
                 const data = JSON.parse(response);
 
                 let Reminders = data.Reminders[0];
-                
+                console.log(Reminders)
                 Reminders.forEach(remind => {
                     if(remind.ReminderDate === "11-02-2021"){
                         count = count +1
