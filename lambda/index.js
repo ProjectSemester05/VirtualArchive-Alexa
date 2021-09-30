@@ -21,6 +21,27 @@ const getRemoteData = (url) => new Promise((resolve, reject) => {
   request.on('error', (err) => reject(err));
 });
 
+const postRequest = async () => {
+    try {
+        const res = await axios.post(`https://5ksnifbz94.execute-api.us-east-1.amazonaws.com/dev/catalogue/new/4447`,
+            {
+                CatalogueName: "Kitchem Items",
+                Description: "Catalogue where I keep my kitchen items",
+                Items:[
+                    {
+                        ItemName: "Knife",
+                        ItemDescription: "Cutting Knife"
+                    }
+                ]
+            }
+            );
+        let data = res.data;
+        // console.log("in : ",data);
+        return res
+    }catch (err) {
+        console.log(err);
+    }
+}
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
