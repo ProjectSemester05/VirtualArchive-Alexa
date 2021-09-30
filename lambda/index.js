@@ -24,7 +24,7 @@ const getRemoteData = (url) => new Promise((resolve, reject) => {
 
 const postRequest = async (userID) => {
     try {
-        const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/new/${userID}`,
+        const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/new/catalogue/${userID}`,
             {
                 CatalogueName: "Tools",
                 Description: "Catalogue where I keep my kitchen items",
