@@ -21,18 +21,13 @@ const getRemoteData = (url) => new Promise((resolve, reject) => {
   request.on('error', (err) => reject(err));
 });
 
-const postRequest = async () => {
+
+const postRequest = async (userID) => {
     try {
-        const res = await axios.post(`https://5ksnifbz94.execute-api.us-east-1.amazonaws.com/dev/catalogue/new/4447`,
+        const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/new/${userID}`,
             {
-                CatalogueName: "Kitchem Items",
+                CatalogueName: "Tools",
                 Description: "Catalogue where I keep my kitchen items",
-                Items:[
-                    {
-                        ItemName: "Knife",
-                        ItemDescription: "Cutting Knife"
-                    }
-                ]
             }
             );
         let data = res.data;
