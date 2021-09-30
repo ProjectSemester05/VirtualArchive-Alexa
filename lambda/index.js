@@ -300,7 +300,7 @@ const CatalogueAddItemHandler = {
         let catalogUUID ='';
         let speechText = "";
         
-        await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
     
