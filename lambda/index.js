@@ -6,7 +6,7 @@ const dynamoDBTableName = "CatalogueDB";
 const demo_data = require('./documents/demoData.json');
 const jwt = require("jwt-decode")
 //const main = require('./main.json');
-const getRemoteData = require('./api/api-get-data.js');
+const {getRemoteData} = require('./api/api-get-data.js');
 
 
 const postRequest = async (userID, catalog) => {
