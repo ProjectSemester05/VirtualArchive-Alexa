@@ -296,18 +296,18 @@ const OpenCatalogueHandler = {
 
         let catalogUUID = ""
 
-        await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
-                catalogUUID = data.Catalogues[0].UUID;
+                catalogUUID = data.Catalogues.UUID;
 
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
 
-        await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
