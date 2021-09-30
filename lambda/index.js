@@ -657,7 +657,7 @@ const ViewTodayReminderIntentHandler = {
 
                 let name = data.item.ItemName;
                 
-                speechText = speechText + ',' +name;
+                speechText = speechText + name+ ',' ;
 
                 
 
