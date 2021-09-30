@@ -85,7 +85,7 @@ const LaunchRequestHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
             
-        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
+        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.'+date;
         if(count > 1 ){
             speakOutput = speakOutput + ' You have '+count+' reminders today';
         }
