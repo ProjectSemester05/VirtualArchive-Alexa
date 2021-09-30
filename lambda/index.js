@@ -58,8 +58,12 @@ const LaunchRequestHandler = {
         if(month < 10){
             month = '0'+month
         }
+        date = today.getDate()
+        if(date < 10){
+            date = '0'+date
+        }
         
-        var date = today.getDate()+'-'+month+'-'+today.getFullYear();
+        var date = date+'-'+month+'-'+today.getFullYear();
         // userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
