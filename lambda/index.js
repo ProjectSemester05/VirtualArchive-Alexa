@@ -627,7 +627,7 @@ const ViewTodayReminderIntentHandler = {
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
-        let speechText = "You have set reminders for the following items: ";
+        let speechText = "Following items have reminders today: ";
         
         const { accessToken } = handlerInput.requestEnvelope.session.user;
         let decoded = jwt(accessToken)
