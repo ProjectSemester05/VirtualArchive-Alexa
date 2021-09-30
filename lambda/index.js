@@ -297,14 +297,15 @@ const CatalogueAddItemHandler = {
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         const description = Alexa.getSlotValue(requestEnvelope, 'description');
         
-        let catalogUUID =''
+        let catalogUUID ='';
+        let speechText = "";
         
         await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
     
                 catalogUUID = data.Catalogues[0].UUID;
-
+                speechText = catalogUUID;
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
@@ -312,12 +313,12 @@ const CatalogueAddItemHandler = {
         
         await postRequestItem(userID,catalogUUID,item,description);
         
-        let speechText = ""
+        
         
         if (description !== null && description !== undefined){
-            speechText = "You Successfully added "+item+" to the "+catalog+" catalogue, saying "+description
+            speechText = speechText+ "You Successfully added "+item+" to the "+catalog+" catalogue, saying "+description
         } else {
-            speechText = "You Successfully added "+item+" to the "+catalog+" catalogue"
+            speechText = speechText+ "You Successfully added "+item+" to the "+catalog+" catalogue"
         }
             
         
