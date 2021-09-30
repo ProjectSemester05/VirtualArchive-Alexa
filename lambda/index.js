@@ -505,7 +505,7 @@ const ViewCataloguesIntentHandler = {
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
-        let speechText = "";
+        let speechText = "Catalogues: ";
         
         const { accessToken } = handlerInput.requestEnvelope.session.user;
         let decoded = jwt(accessToken)
@@ -525,7 +525,7 @@ const ViewCataloguesIntentHandler = {
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
         })
-        speechText = "Catalogues: kitchen items,default catalogue,book collections";
+        // speechText = "Catalogues: kitchen items,default catalogue,book collections";
         
         
         return handlerInput.responseBuilder
