@@ -305,7 +305,7 @@ const CatalogueAddItemHandler = {
                 const data = JSON.parse(response);
     
                 catalogUUID = data.Catalogues[0].UUID;
-                speechText = catalogUUID;
+                // speechText = catalogUUID;
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
