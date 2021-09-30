@@ -25,12 +25,36 @@ const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         const { accessToken } = handlerInput.requestEnvelope.session.user;
         let decoded = jwt(accessToken)
         let userID = decoded.sub
         
-        const speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
+        let count = 0
+        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
+            .then((response) => {
+                const data = JSON.parse(response);
+
+                let Reminders = data.Reminders[0];
+                
+                Reminders.forEach(remind => {
+                    if(remind.ReminderDate === "11-02-2021"){
+                        count = count +1
+                    }
+                   
+                });
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+            
+        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
+        if(count > 0 ){
+            speakOutput = speakOutput + ' You have '+count+' reminders today'
+        }
+        
+        
         var demo_blue = require('./documents/demo_blue.json');
 
     // Check to make sure the device supports APL
@@ -510,7 +534,6 @@ const ViewCataloguesIntentHandler = {
         let decoded = jwt(accessToken)
         let userID = decoded.sub
         
-        // userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-user-id/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
