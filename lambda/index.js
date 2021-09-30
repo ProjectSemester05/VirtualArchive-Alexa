@@ -22,12 +22,11 @@ const getRemoteData = (url) => new Promise((resolve, reject) => {
 });
 
 
-const postRequest = async (userID) => {
+const postRequest = async (userID, catalog) => {
     try {
         const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/new/${userID}`,
             {
-                CatalogueName: "Tools",
-                Description: "Catalogue where I keep my kitchen items",
+                CatalogueName: catalog
             }
             );
         let data = res.data;
@@ -47,7 +46,6 @@ const LaunchRequestHandler = {
         let decoded = jwt(accessToken)
         let userID = decoded.sub
         
-        await postRequest(userID);
         let count = 0
         var today = new Date();
         var month = today.getMonth()+1
@@ -316,13 +314,19 @@ const CreateCatalogueHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CreateCatalogueIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         
+
+        
+        await postRequest(userID, catalog);
         let speechText = ""
         
         // return HelpIntentHandler.handle(handlerInput);
