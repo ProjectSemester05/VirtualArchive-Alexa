@@ -285,7 +285,10 @@ const CatalogueAddItemHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CatalogAddItemIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -293,6 +296,8 @@ const CatalogueAddItemHandler = {
         const item = Alexa.getSlotValue(requestEnvelope, 'item');
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         const description = Alexa.getSlotValue(requestEnvelope, 'description');
+        
+        await postRequestItem(userID,catalog,item,description);
         
         let speechText = ""
         
