@@ -500,13 +500,31 @@ const ViewCataloguesIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewCataloguesIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         let speechText = "";
         
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
+        
+        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-user-id/${userID}`)
+            .then((response) => {
+                const data = JSON.parse(response);
+
+                let catalogs = data.Items;
+                
+                catalogs.forEach(catalog=> {
+                    speechText = speechText+catalog.CatalogueName+", "
+                });
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+        })
         speechText = "Catalogues: kitchen items,default catalogue,book collections";
         
         
