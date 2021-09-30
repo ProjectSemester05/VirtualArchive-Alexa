@@ -426,6 +426,14 @@
                         "view all the catalogues",
                         "show all the catalogues"
                     ]
+                },
+                {
+                    "name": "ViewTodayReminderIntent",
+                    "slots": [],
+                    "samples": [
+                        "show today reminders",
+                        "view today reminders"
+                    ]
                 }
             ],
             "types": [

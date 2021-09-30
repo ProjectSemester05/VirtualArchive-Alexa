@@ -561,6 +561,59 @@ const ViewCataloguesIntentHandler = {
     }
 };
 
+const ViewTodayReminderIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewTodayReminderIntent';
+    },
+    async handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        let speechText = "You have set reminders for the following items: ";
+        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
+        
+        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
+            .then((response) => {
+                const data = JSON.parse(response);
+
+                let reminders = data.Reminders;
+                
+                reminders.forEach(remind=> {
+                    let itemuuid = remind.ItemUUID;
+
+                    await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/${itemuuid}`)
+                    .then((response) => {
+                        const item_data = JSON.parse(response);
+        
+                        let item_name = item_data.ItemName;
+                        speechText = speechText + ' ' + item_name+ ','                        
+                    
+        
+                    })
+                    .catch((err) => {
+                        console.log(`ERROR: ${err.message}`);
+                })    
+                });
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+        })
+        // speechText = "Catalogues: kitchen items,default catalogue,book collections";
+        
+        
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+    }
+};
+
 const ViewDescriptionHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -830,6 +883,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         ViewCatalogueOfItemIntentHandler,
         DeleteCatalogueIntentHandler,
         ViewCataloguesIntentHandler,
+        ViewTodayReminderIntentHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)
