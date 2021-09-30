@@ -60,7 +60,7 @@ configuration:
 
 ---
 - test: View all catalogues
-- ViewCataloguesIntent : "Catalogues: kitchen items,default catalogue,book collections"
+- ViewCataloguesIntent : "Catalogues: garage, kitchen,"
 
 ---
 - test: Cancel command
