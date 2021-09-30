@@ -300,7 +300,7 @@ const OpenCatalogueHandler = {
             .then((response) => {
                 const data = JSON.parse(response);
 
-                catalogUUID = data.Catalogues;
+                catalogUUID = data.Catalogues[0].UUID;
                 speechText = speechText +catalogUUID;
             })
             .catch((err) => {
