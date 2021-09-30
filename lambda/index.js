@@ -7,7 +7,7 @@ const demo_data = require('./documents/demoData.json');
 const jwt = require("jwt-decode")
 //const main = require('./main.json');
 const {getRemoteData} = require('./api/api-get-data.js');
-
+const deleteRequest = require('./api/api-delete-data.js');
 // const getRemoteData = (url) => new Promise((resolve, reject) => {
 //   const client = url.startsWith('https') ? require('https') : require('http');
 //   const request = client.get(url, (response) => {
