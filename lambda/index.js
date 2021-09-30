@@ -304,14 +304,13 @@ const CatalogueAddItemHandler = {
                 const data = JSON.parse(response);
     
                 catalogUUID = data.Catalogues[0].UUID;
-                postRequestItem(userID,catalogUUID,item,description);
-    
+
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
         
-        
+        await postRequestItem(userID,catalogUUID,item,description);
         
         let speechText = ""
         
