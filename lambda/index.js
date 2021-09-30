@@ -585,19 +585,8 @@ const ViewTodayReminderIntentHandler = {
                 
                 reminders.forEach(remind=> {
                     let itemuuid = remind.ItemUUID;
+                    speechText = speechText + itemuuid;
 
-                    await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/${itemuuid}`)
-                    .then((response) => {
-                        const item_data = JSON.parse(response);
-        
-                        let item_name = item_data.ItemName;
-                        speechText = speechText + ' ' + item_name+ ','                        
-                    
-        
-                    })
-                    .catch((err) => {
-                        console.log(`ERROR: ${err.message}`);
-                })    
                 });
 
             })
