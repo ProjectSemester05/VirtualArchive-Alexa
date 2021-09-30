@@ -656,7 +656,7 @@ const ViewTodayReminderIntentHandler = {
             .then((response) => {
                 const data = JSON.parse(response);
 
-                let name = data.item[0].ItemName;
+                let name = data.item.ItemName;
                 
                 speechText = speechText + ',' +name;
 
