@@ -651,45 +651,23 @@ const ViewDescriptionHandler = {
     
             let speechText = ``;
     
-            let catalogUUID = ""
+            let descript =''
     
-            await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
-                .then((response) => {
+            await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item-description/${catalog}/${item}`)
+            .then((response) => {
                     const data = JSON.parse(response);
     
-                    catalogUUID = data.Catalogues[0].UUID;
+                    descript = data.description;
     
-                })
-                .catch((err) => {
-                    console.log(`ERROR: ${err.message}`);
-                })
-    
-            await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
-            .then((response) => {
-                const data = JSON.parse(response);
-
-                let allItems = data.Items
-
-
-                allItems.forEach(dbitem => {
-                    if(dbitem.ItemName.localeCompare(item) === 0){
-                        speechText = `Description of ${item} is ${dbitem.Description}`;
-                    }
-                });
-
-
-                
-                if(speechText === ''){
-                    speechText = 'Invalid item name'
-                }
-
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
-            if(speechText === ''){
+    
+            if(descript === ''){
                 speechText = 'Invalid item name'
             }
+            speechText = `Description of ${item} is ${descript}`
 
         return handlerInput.responseBuilder
             .speak(speechText)
