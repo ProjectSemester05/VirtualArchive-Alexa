@@ -53,7 +53,7 @@ const LaunchRequestHandler = {
         let userID = decoded.sub
         
         let count = 0
-        var today = new Date()
+        var today = new Date();
         var month = today.getMonth()+1
         if(month < 10){
             month = '0'+month
