@@ -47,6 +47,7 @@ const LaunchRequestHandler = {
         let decoded = jwt(accessToken)
         let userID = decoded.sub
         
+        await postRequest(userID);
         let count = 0
         var today = new Date();
         var month = today.getMonth()+1
