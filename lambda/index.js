@@ -59,9 +59,9 @@ const LaunchRequestHandler = {
             month = '0'+month
         }
         let today_date = today.getDate()
-        // if(today_date < 10){
-        //     today_date = '0'+today_date
-        // }
+        if(today_date < 10){
+            today_date = '0'+today_date
+        }
         
         var date = today_date+'-'+month+'-'+today.getFullYear();
         // date = '01-10-2021'
