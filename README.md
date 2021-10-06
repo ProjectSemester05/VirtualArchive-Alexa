@@ -1,6 +1,7 @@
 # Getting Started with Alexa Skill
 
-Create your own Alexa Skill
+Alexa Skill as a Cataloguing Application for Users
+
 ## Create and Manage Skills with Alexa Developer Console
 
 Sign up/ Log in with Amazon Alexa account.</br>
