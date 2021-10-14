@@ -43,7 +43,15 @@ const postRequestItem = async (userID,catalogUUID,item,description) => {
         console.log(err);
     }
 }
-
+const deleteRequest = async (url) => {
+    try {
+      let response = await axios.delete(url,{},getHeaderToken());
+      return {...response.data, success: true};
+  
+    } catch (error) {
+      return {...error, success: false};
+    }
+}
 //executes when launch intent triggers
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -567,15 +575,7 @@ const ViewCatalogueOfItemIntentHandler = {
     }
 };
 
-const deleteRequest = async (url) => {
-    try {
-      let response = await axios.delete(url,{},getHeaderToken());
-      return {...response.data, success: true};
-  
-    } catch (error) {
-      return {...error, success: false};
-    }
-  };
+
 
 const DeleteCatalogueIntentHandler = {
     canHandle(handlerInput) {
@@ -591,20 +591,23 @@ const DeleteCatalogueIntentHandler = {
 
         let speechText = "";
         let userID = '14082a4d-35d1-4450-97c3-393730cffa29';
-        let UUID = '';
+        let catalogueUUID = '';
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
-        .then((response) => {
-            const data = JSON.parse(response);
-
-            UUID = data.Catalogues[0].UUID;
-               
-        })
-        .catch((err) => {
-            console.log(`ERROR: ${err.message}`);
-        })
-        
-        await deleteRequest(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/${UUID}`)
             .then((response) => {
+                const data = JSON.parse(response);
+
+                catalogueUUID = data.Catalogues[0].UUID;
+                
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+        console.log(catalogueUUID);
+
+        await deleteRequest(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/${catalogueUUID}`)
+            .then((response) => {
+                // const data2 = JSON.parse(response);
+                // speechText = data2;
                 speechText = catalog+" catalogue is deleted";
             })
             .catch((err) => {
