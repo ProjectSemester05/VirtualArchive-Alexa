@@ -65,14 +65,9 @@ const LaunchRequestHandler = {
             today_date = '0'+today_date
         }
         
-<<<<<<< HEAD
-        var date = today.getDate()+'-'+month+'-'+today.getFullYear();
-        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
-=======
         var date = today_date+'-'+month+'-'+today.getFullYear();
         // date = '01-10-2021'
         // userID = '14082a4d-35d1-4450-97c3-393730cffa29'
->>>>>>> f7edd4ab956414ca560e0e53bbf79d0c9dbb2a86
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
@@ -93,7 +88,7 @@ const LaunchRequestHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
             
-        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently.';
+        let speakOutput = 'Welcome to Virtual Archive. You can organize your items efficiently!';
         if(count > 1 ){
             speakOutput = speakOutput + ' You have '+count+' reminders today';
         }
