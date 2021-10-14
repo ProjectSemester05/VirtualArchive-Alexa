@@ -1,0 +1,9 @@
+---
+configuration:
+    locales: en-US
+
+---
+- test: launch request and view the catalogue of an item
+- open virtual archive: Welcome to Virtual Archive. You can organize your items efficiently!
+- what is the catalogue of mug: Catalogue of the mug is kitchen items
+- view today reminders: Following items have reminders today; cup,car

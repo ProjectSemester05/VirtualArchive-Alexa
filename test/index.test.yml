@@ -4,7 +4,7 @@ configuration:
 
 ---
 - test: Launch Virtual Archive
-- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently."
+- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently!"
 
 ---
 - test: Help Intent

@@ -127,3 +127,45 @@ Please provide the correct location of the Interaction Model.
     at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:364
     at new Promise (<anonymous>)
     at VirtualAlexaInvoker.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\VirtualAlexaInvoker.js:3:97)
+2021-10-14T14:45:17.087Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-10-14T14:45:17.091Z error: bst-test            YAMLException: bad indentation of a sequence entry at line 9, column 61:
+     ... owing items have reminders today: cup,car
+                                         ^
+    at generateError (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:191:10)
+    at throwError (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:197:9)
+    at readBlockSequence (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:980:7)
+    at composeNode (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1377:12)
+    at readDocument (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1538:3)
+    at loadDocuments (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1594:5)
+    at Object.loadAll (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1602:19)
+    at TestParser.parse (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\test\TestParser.js:162:30)
+    at TestRunner.parseContents (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:574:26)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:74:39
+2021-10-14T14:45:32.997Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-10-14T14:45:33.000Z error: bst-test            YAMLException: bad indentation of a sequence entry at line 9, column 25:
+    - view today reminders: `Following items have reminders  ... 
+                            ^
+    at generateError (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:191:10)
+    at throwError (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:197:9)
+    at readBlockSequence (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:980:7)
+    at composeNode (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1377:12)
+    at readDocument (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1538:3)
+    at loadDocuments (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1594:5)
+    at Object.loadAll (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1602:19)
+    at TestParser.parse (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\test\TestParser.js:162:30)
+    at TestRunner.parseContents (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:574:26)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:74:39
+2021-10-14T14:47:37.697Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-10-14T14:47:37.702Z error: bst-test            YAMLException: bad indentation of a sequence entry at line 9, column 61:
+     ... owing items have reminders today: cup,car
+                                         ^
+    at generateError (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:191:10)
+    at throwError (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:197:9)
+    at readBlockSequence (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:980:7)
+    at composeNode (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1377:12)
+    at readDocument (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1538:3)
+    at loadDocuments (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1594:5)
+    at Object.loadAll (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\js-yaml-bespoken\lib\js-yaml\loader.js:1602:19)
+    at TestParser.parse (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\test\TestParser.js:162:30)
+    at TestRunner.parseContents (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:574:26)
+    at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:74:39
