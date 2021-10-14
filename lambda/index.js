@@ -9,6 +9,7 @@ const jwt = require("jwt-decode")
 const {getRemoteData} = require('./api/api-get-data.js');
 // const {deleteRequest} = require('./api/api-delete-data.js');
 
+//post request to store catalogue name
 const postRequest = async (userID, catalog) => {
     try {
         const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/new/${userID}`,
@@ -24,6 +25,7 @@ const postRequest = async (userID, catalog) => {
     }
 }
 
+//post request to store item in a catalogue
 const postRequestItem = async (userID,catalogUUID,item,description) => {
     try {
         const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/new`,
@@ -42,15 +44,15 @@ const postRequestItem = async (userID,catalogUUID,item,description) => {
     }
 }
 
-
+//executes when launch intent triggers
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     async handle(handlerInput) {
-        const { accessToken } = handlerInput.requestEnvelope.session.user;
-        let decoded = jwt(accessToken)
-        let userID = decoded.sub
+        // const { accessToken } = handlerInput.requestEnvelope.session.user;
+        // let decoded = jwt(accessToken)
+        // let userID = decoded.sub
         
         let count = 0
         var today = new Date();
@@ -60,7 +62,7 @@ const LaunchRequestHandler = {
         }
         
         var date = today.getDate()+'-'+month+'-'+today.getFullYear();
-        // userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
@@ -117,6 +119,8 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
+
+// user touch event - open catalogue command
 const demoTypeIntentHandler = {
   canHandle(handlerInput) {
     //Runs if the demoTypeIntent was invoked verbally OR if the button in the demo_blue.json document was pressed
@@ -191,6 +195,7 @@ const demoTypeIntentHandler = {
   },
 };
 
+//user touch event -  toggle between catalogues
 const nextBackIntentHandler = {
   canHandle(handlerInput) {
     //Runs if the demoTypeIntent was invoked verbally OR if the button in the demo_blue.json document was pressed
@@ -286,10 +291,10 @@ const CatalogueAddItemHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CatalogAddItemIntent';
     },
     async handle(handlerInput) {
-        const { accessToken } = handlerInput.requestEnvelope.session.user;
-        let decoded = jwt(accessToken)
-        let userID = decoded.sub
-        
+        // const { accessToken } = handlerInput.requestEnvelope.session.user;
+        // let decoded = jwt(accessToken)
+        // let userID = decoded.sub
+        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -334,6 +339,7 @@ const CatalogueAddItemHandler = {
     }
 };
 
+// create a catalogue intent
 const CreateCatalogueHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -341,10 +347,10 @@ const CreateCatalogueHandler = {
     },
     async handle(handlerInput) {
         
-        const { accessToken } = handlerInput.requestEnvelope.session.user;
-        let decoded = jwt(accessToken)
-        let userID = decoded.sub
-        
+        // const { accessToken } = handlerInput.requestEnvelope.session.user;
+        // let decoded = jwt(accessToken)
+        // let userID = decoded.sub
+        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -423,6 +429,8 @@ const OpenCatalogueHandler = {
             .getResponse();
     }
 };
+
+//update the description of an item
 const UpdateItemHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -589,10 +597,10 @@ const ViewCataloguesIntentHandler = {
 
         let speechText = "Catalogues: ";
         
-        const { accessToken } = handlerInput.requestEnvelope.session.user;
-        let decoded = jwt(accessToken)
-        let userID = decoded.sub
-        
+        // const { accessToken } = handlerInput.requestEnvelope.session.user;
+        // let decoded = jwt(accessToken)
+        // let userID = decoded.sub
+        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-user-id/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);

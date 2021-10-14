@@ -4,7 +4,7 @@ configuration:
 
 ---
 - test: Launch Virtual Archive
-- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently. You have 2 reminders today"
+- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently."
 
 ---
 - test: Help Intent
@@ -44,7 +44,7 @@ configuration:
 
 ---
 - test: View the description of an item
-- ViewDescriptionIntent item=tom_sawyer catalog=book_collection: "Invalid item name"
+- ViewDescriptionIntent item=car catalog=garage: "Description of car is red car"
 
 ---
 - test: View the reminder of an item
@@ -58,9 +58,9 @@ configuration:
 - test: Delete a catalogue
 - DeleteCatalogueIntent catalog=book_collection: "book_collection catalogue is deleted"
 
----
-- test: View all catalogues
-- ViewCataloguesIntent : "Catalogues: garage, kitchen,"
+# ---
+# - test: View all catalogues
+# - ViewCataloguesIntent : "Catalogues: Tools, garage, necessary tools, kitchen, languages, book_collection,"
 
 ---
 - test: Cancel command
