@@ -577,7 +577,7 @@ const ViewCatalogueOfItemIntentHandler = {
 };
 
 
-
+//deleting a catalogue using catalogue name
 const DeleteCatalogueIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -593,6 +593,8 @@ const DeleteCatalogueIntentHandler = {
         let speechText = "";
         let userID = '14082a4d-35d1-4450-97c3-393730cffa29';
         let catalogueUUID = '';
+
+        //get the uuid of the catalogue from catalogue name
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
@@ -605,6 +607,7 @@ const DeleteCatalogueIntentHandler = {
             })
         console.log(catalogueUUID);
 
+        //delete the catalogue using catalogue uuid
         await deleteRequest(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/${catalogueUUID}`)
             .then((response) => {
                 // const data2 = JSON.parse(response);
