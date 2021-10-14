@@ -1,0 +1,9 @@
+---
+configuration:
+    locales: en-US
+
+---
+- test: Delete a Catalogue
+- DeleteCatalogueIntent catalog=silverware: "silverware catalogue is deleted"
+
+---

@@ -169,3 +169,55 @@ Please provide the correct location of the Interaction Model.
     at TestParser.parse (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\test\TestParser.js:162:30)
     at TestRunner.parseContents (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:574:26)
     at C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\skill-testing-ml\dist\lib\runner\TestRunner.js:74:39
+2021-10-14T16:02:22.313Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-10-14T16:02:22.490Z error: bst-test            SyntaxError: F:\VirtualArchive\lambda\index.js: Unexpected reserved word 'await'. (595:8)
+
+[0m [90m 593 |[39m         userID [33m=[39m [32m'14082a4d-35d1-4450-97c3-393730cffa29'[39m[33m;[39m[0m
+[0m [90m 594 |[39m         [36mlet[39m [33mUUID[39m [33m=[39m [32m''[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 595 |[39m         [36mawait[39m getRemoteData([32m`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`[39m)[0m
+[0m [90m     |[39m         [31m[1m^[22m[39m[0m
+[0m [90m 596 |[39m         [33m.[39mthen((response) [33m=>[39m {[0m
+[0m [90m 597 |[39m             [36mconst[39m data [33m=[39m [33mJSON[39m[33m.[39mparse(response)[33m;[39m[0m
+[0m [90m 598 |[39m[0m
+    at Parser._raise (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\error.js:147:45)
+    at Parser.raiseWithData (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\error.js:142:17)
+    at Parser.raise (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\error.js:91:17)
+    at Parser.checkReservedWord (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\expression.js:2614:12)
+    at Parser.parseIdentifierName (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\expression.js:2553:12)
+    at Parser.parseIdentifier (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\expression.js:2523:23)
+    at Parser.parseExprAtom (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\expression.js:1087:25)
+    at Parser.parseExprSubscripts (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\expression.js:669:23)
+    at Parser.parseUpdate (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\expression.js:649:21)
+    at Parser.parseMaybeUnary (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@babel\parser\src\parser\expression.js:620:23)
+2021-10-14T16:03:00.314Z error: bst-test            Error using bst-test on Node: v14.15.0
+2021-10-14T16:03:00.315Z error: bst-test            [1m[31mJest encountered an unexpected token[39m[22m
+
+This usually means that you are trying to import a file which Jest cannot parse, e.g. it's not plain JavaScript.
+
+By default, if Jest sees a Babel config, it will use that to transform your files, ignoring "node_modules".
+
+Here's what you can do:
+ • To have some of your "node_modules" files transformed, you can specify a custom [1m"transformIgnorePatterns"[22m in your config.
+ • If you need a custom transformation specify a [1m"transform"[22m option in your config.
+ • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the [1m"moduleNameMapper"[22m config option.
+
+You'll find more details and examples of these config options in the docs:
+[36mhttps://jestjs.io/docs/en/configuration.html[39m
+
+[1m[31mDetails:[39m[22m
+
+F:\VirtualArchive\lambda\index.js:8034
+export const deleteRequest = async (url) => {
+^^^^^^
+
+SyntaxError: Unexpected token 'export'
+    at new Script (vm.js:100:7)
+    at ScriptTransformer._transformAndBuildScript (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@jest\transform\build\ScriptTransformer.js:537:17)
+    at ScriptTransformer.transform (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\@jest\transform\build\ScriptTransformer.js:579:25)
+    at Runtime._execModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:842:53)
+    at Runtime._loadModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:577:12)
+    at Runtime.requireModule (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:433:10)
+    at Runtime.requireModuleOrMock (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\jest-runtime\build\index.js:598:21)
+    at Function.Object.<anonymous>.ModuleInvoker.invokeHandler (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\ModuleInvoker.js:17:29)
+    at LocalSkillInteractor.Object.<anonymous>.LocalSkillInteractor.invoke (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\LocalSkillInteractor.js:24:50)
+    at LocalSkillInteractor.<anonymous> (C:\Users\USER.DESKTOP-JCQKSPC\AppData\Roaming\npm\node_modules\bespoken-tools\node_modules\virtual-alexa\lib\src\impl\SkillInteractor.js:65:41)

@@ -67,7 +67,7 @@ const LaunchRequestHandler = {
         
         var date = today_date+'-'+month+'-'+today.getFullYear();
         // date = '01-10-2021'
-        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
@@ -299,7 +299,7 @@ const CatalogueAddItemHandler = {
         // const { accessToken } = handlerInput.requestEnvelope.session.user;
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
-        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -355,7 +355,7 @@ const CreateCatalogueHandler = {
         // const { accessToken } = handlerInput.requestEnvelope.session.user;
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
-        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -566,23 +566,52 @@ const ViewCatalogueOfItemIntentHandler = {
             .getResponse();
     }
 };
+
+const deleteRequest = async (url) => {
+    try {
+      let response = await axios.delete(url,{},getHeaderToken());
+      return {...response.data, success: true};
+  
+    } catch (error) {
+      return {...error, success: false};
+    }
+  };
+
 const DeleteCatalogueIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteCatalogueIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
-        
+
         let speechText = "";
+        let userID = '14082a4d-35d1-4450-97c3-393730cffa29';
+        let UUID = '';
+        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+        .then((response) => {
+            const data = JSON.parse(response);
+
+            UUID = data.Catalogues[0].UUID;
+               
+        })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        })
         
-        speechText = catalog+" catalogue is deleted";
-        
-        
+        await deleteRequest(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/${UUID}`)
+            .then((response) => {
+                speechText = catalog+" catalogue is deleted";
+            })
+            .catch((err) => {
+                speechText = catalog+" does not exist";
+                console.log(`ERROR: ${err.message}`);
+            })
+          
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
@@ -600,12 +629,12 @@ const ViewCataloguesIntentHandler = {
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
-        let speechText = "Catalogues: ";
+        let speechText = "Catalogues; ";
         
         // const { accessToken } = handlerInput.requestEnvelope.session.user;
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
-        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-user-id/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
@@ -645,7 +674,7 @@ const ViewTodayReminderIntentHandler = {
         // const { accessToken } = handlerInput.requestEnvelope.session.user;
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
-        userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         const itemUUID_array = []
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
