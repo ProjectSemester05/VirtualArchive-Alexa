@@ -4,6 +4,6 @@ configuration:
 
 ---
 - test: Delete a Catalogue
-- DeleteCatalogueIntent catalog=silverware: "silverware catalogue is deleted"
+- DeleteCatalogueIntent catalog=book_collection: "book_collection catalogue is deleted"
 
 ---

@@ -45,7 +45,8 @@ const postRequestItem = async (userID,catalogUUID,item,description) => {
 }
 const deleteRequest = async (url) => {
     try {
-      let response = await axios.delete(url,{},getHeaderToken());
+        console.log(url)
+      let response = await axios.delete(url,{});
       return {...response.data, success: true};
   
     } catch (error) {
