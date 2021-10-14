@@ -50,9 +50,9 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     async handle(handlerInput) {
-        // const { accessToken } = handlerInput.requestEnvelope.session.user;
-        // let decoded = jwt(accessToken)
-        // let userID = decoded.sub
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         
         let count = 0
         var today = new Date();
