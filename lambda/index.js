@@ -60,9 +60,19 @@ const LaunchRequestHandler = {
         if(month < 10){
             month = '0'+month
         }
+        let today_date = today.getDate()
+        if(today_date < 10){
+            today_date = '0'+today_date
+        }
         
+<<<<<<< HEAD
         var date = today.getDate()+'-'+month+'-'+today.getFullYear();
         userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+=======
+        var date = today_date+'-'+month+'-'+today.getFullYear();
+        // date = '01-10-2021'
+        // userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+>>>>>>> f7edd4ab956414ca560e0e53bbf79d0c9dbb2a86
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
@@ -635,12 +645,13 @@ const ViewTodayReminderIntentHandler = {
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
-        let speechText = "You have set reminders for the following items: ";
+        let speechText = "Following items have reminders today: ";
         
         const { accessToken } = handlerInput.requestEnvelope.session.user;
         let decoded = jwt(accessToken)
         let userID = decoded.sub
         
+        const itemUUID_array = []
         await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
@@ -649,16 +660,33 @@ const ViewTodayReminderIntentHandler = {
                 
                 reminders.forEach(remind=> {
                     let itemuuid = remind.ItemUUID;
-                    speechText = speechText + itemuuid;
-
+                    itemUUID_array.push(itemuuid)
                 });
 
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
-        })
-        // speechText = "Catalogues: kitchen items,default catalogue,book collections";
+            })
         
+        for(const uuid of itemUUID_array){
+            await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/${uuid}`)
+            .then((response) => {
+                const data = JSON.parse(response);
+
+                let name = data.item.ItemName;
+                
+                speechText = speechText + name+ ',' ;
+
+                
+
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+        }
+        // speechText = "Catalogues: kitchen items,default catalogue,book collections";
+        speechText = speechText.slice(0, -1);
         
         return handlerInput.responseBuilder
             .speak(speechText)
