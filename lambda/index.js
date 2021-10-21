@@ -47,10 +47,10 @@ const deleteRequest = async (url) => {
     try {
         console.log(url)
       let response = await axios.delete(url,{});
-      return {...response.data, success: true};
+      return {success: true};
   
     } catch (error) {
-      return {...error, success: false};
+      return {success: false};
     }
 }
 //executes when launch intent triggers
@@ -319,7 +319,7 @@ const CatalogueAddItemHandler = {
         let catalogUUID ='';
         let speechText = "";
         
-        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+        await getRemoteData(`${base_url}/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
     
@@ -399,7 +399,7 @@ const OpenCatalogueHandler = {
 
         let catalogUUID = ""
 
-        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+        await getRemoteData(`${base_url}/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -409,7 +409,7 @@ const OpenCatalogueHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
 
-        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+        await getRemoteData(`${base_url}/item-by-catalogue-uuid/${catalogUUID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -595,7 +595,7 @@ const DeleteCatalogueIntentHandler = {
         let catalogueUUID = '';
 
         //get the uuid of the catalogue from catalogue name
-        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+        await getRemoteData(`${base_url}/catalogue-by-name/${catalog}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -608,7 +608,7 @@ const DeleteCatalogueIntentHandler = {
         console.log(catalogueUUID);
 
         //delete the catalogue using catalogue uuid
-        await deleteRequest(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/${catalogueUUID}`)
+        await deleteRequest(`${base_url}/catalogue/${catalogueUUID}`)
             .then((response) => {
                 // const data2 = JSON.parse(response);
                 // speechText = data2;
@@ -642,7 +642,7 @@ const ViewCataloguesIntentHandler = {
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
         let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
-        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-user-id/${userID}`)
+        await getRemoteData(`${base_url}/catalogue-by-user-id/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -683,7 +683,7 @@ const ViewTodayReminderIntentHandler = {
         // let userID = decoded.sub
         let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
         const itemUUID_array = []
-        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
+        await getRemoteData(`${base_url}/reminder-by-user/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -700,7 +700,7 @@ const ViewTodayReminderIntentHandler = {
             })
         
         for(const uuid of itemUUID_array){
-            await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/${uuid}`)
+            await getRemoteData(`${base_url}/item/${uuid}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -743,7 +743,7 @@ const ViewDescriptionHandler = {
     
             let descript =''
     
-            await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item-description/${catalog}/${item}`)
+            await getRemoteData(`${base_url}/item-description/${catalog}/${item}`)
             .then((response) => {
                     const data = JSON.parse(response);
     
@@ -785,7 +785,7 @@ const ViewReminderHandler = {
             let catalogUUID = ""
             let item_uuid = '';
             
-            await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/catalogue-by-name/${catalog}`)
+            await getRemoteData(`${base_url}/catalogue-by-name/${catalog}`)
                 .then((response) => {
                     const data = JSON.parse(response);
     
@@ -796,7 +796,7 @@ const ViewReminderHandler = {
                     console.log(`ERROR: ${err.message}`);
                 })
     
-            await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/item-by-catalogue-uuid/${catalogUUID}`)
+            await getRemoteData(`${base_url}/item-by-catalogue-uuid/${catalogUUID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
@@ -821,7 +821,7 @@ const ViewReminderHandler = {
                 console.log(`ERROR: ${err.message}`);
             })
             if(item_uuid !== ''){
-                await getRemoteData(`https://wuaatihexl.execute-api.us-east-1.amazonaws.com/dev/reminder/${catalogUUID}`)
+                await getRemoteData(`${base_url}/reminder/${catalogUUID}`)
                     .then((response) => {
                         const data = JSON.parse(response);
         
