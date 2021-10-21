@@ -8,11 +8,11 @@ const jwt = require("jwt-decode")
 //const main = require('./main.json');
 const {getRemoteData} = require('./api/api-get-data.js');
 // const {deleteRequest} = require('./api/api-delete-data.js');
-
+const base_url = 'https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev'
 //post request to store catalogue name
 const postRequest = async (userID, catalog) => {
     try {
-        const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/catalogue/new/${userID}`,
+        const res = await axios.post(`${base_url}/catalogue/new/${userID}`,
             {
                 CatalogueName: catalog
             }
@@ -28,7 +28,7 @@ const postRequest = async (userID, catalog) => {
 //post request to store item in a catalogue
 const postRequestItem = async (userID,catalogUUID,item,description) => {
     try {
-        const res = await axios.post(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/item/new`,
+        const res = await axios.post(`${base_url}/item/new`,
             {
                 ItemName: item,
                 CatalogueUUID: catalogUUID,
@@ -77,7 +77,7 @@ const LaunchRequestHandler = {
         var date = today_date+'-'+month+'-'+today.getFullYear();
         // date = '01-10-2021'
         let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
-        await getRemoteData(`https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user/${userID}`)
+        await getRemoteData(`${base_url}/reminder-by-user/${userID}`)
             .then((response) => {
                 const data = JSON.parse(response);
 
