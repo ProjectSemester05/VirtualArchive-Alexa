@@ -3,7 +3,8 @@ configuration:
     locales: en-US
 
 ---
-- test: Delete a Catalogue
-- DeleteCatalogueIntent catalog=book_collection: "book_collection catalogue is deleted"
-
+# - test: Delete a Catalogue
+# - DeleteCatalogueIntent catalog=book_collection: "book_collection catalogue is deleted"
+- test: Launch request
+- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently!"
 ---

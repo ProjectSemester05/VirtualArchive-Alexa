@@ -8,13 +8,31 @@ const jwt = require("jwt-decode")
 //const main = require('./main.json');
 const {getRemoteData} = require('./api/api-get-data.js');
 // const {deleteRequest} = require('./api/api-delete-data.js');
-const base_url = 'https://v86cz5q48g.execute-api.us-east-1.amazonaws.com/dev'
+const base_url = 'https://n8l7szvh3j.execute-api.us-east-1.amazonaws.com/dev'
+
+//get request
+const getRequest = async (url, userID) => {
+    try {
+      let response =  await axios.get(url, 
+            {
+                headers: {UserID: userID}
+            }
+            ); 
+      return {success: true};
+  
+    } catch (error) {
+      return {success: false};
+    }
+};
 //post request to store catalogue name
 const postRequest = async (userID, catalog) => {
     try {
-        const res = await axios.post(`${base_url}/catalogue/new/${userID}`,
+        const res = await axios.post(`${base_url}/catalogue/new`,
             {
                 CatalogueName: catalog
+            },
+            {
+                headers: {UserID: userID}
             }
             );
         let data = res.data;
@@ -76,13 +94,14 @@ const LaunchRequestHandler = {
         
         var date = today_date+'-'+month+'-'+today.getFullYear();
         // date = '01-10-2021'
-        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
-        await getRemoteData(`${base_url}/reminder-by-user/${userID}`)
+        let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
+        // console.log(`${base_url}/reminder-by-user`)
+        await getRequest(`https://n8l7szvh3j.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user`,userID)
             .then((response) => {
                 const data = JSON.parse(response);
 
                 let Reminders = data.Reminders;
-                // console.log(Reminders)
+                console.log(Reminders)
                 Reminders.forEach(remind => {
                     // console.log(remind.ReminderDate)
                     // console.log(date)
