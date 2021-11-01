@@ -10,12 +10,6 @@ const jwt = require("jwt-decode")
 // const {deleteRequest} = require('./api/api-delete-data.js');
 const base_url = 'https://n8l7szvh3j.execute-api.us-east-1.amazonaws.com/dev'
 // let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
-const { accessToken } = handlerInput.requestEnvelope.session.user;
-let decoded = jwt(accessToken)
-let userID = decoded.sub
-
-
-
 
 //get request
 const getRequest = async (url, userID) => {
@@ -175,9 +169,9 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     async handle(handlerInput) {
-        // const { accessToken } = handlerInput.requestEnvelope.session.user;
-        // let decoded = jwt(accessToken)
-        // let userID = decoded.sub
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         
         let count = 0
         let date = todayDate();
@@ -255,6 +249,10 @@ const demoTypeIntentHandler = {
     );
   },
   handle(handlerInput) {
+    const { accessToken } = handlerInput.requestEnvelope.session.user;
+    let decoded = jwt(accessToken)
+    let userID = decoded.sub
+
     var next_demo = 'cheese';
     var speakOutput = '';
 
@@ -333,6 +331,10 @@ const nextBackIntentHandler = {
     );
   },
   handle(handlerInput) {
+    const { accessToken } = handlerInput.requestEnvelope.session.user;
+    let decoded = jwt(accessToken)
+    let userID = decoded.sub
+    
     const intro_doc = require("./documents/APLA_docIntro.json");
 
     // figure out the proper cheese to use and assign to doc_data
@@ -413,10 +415,9 @@ const CatalogueAddItemHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CatalogAddItemIntent';
     },
     async handle(handlerInput) {
-        // const { accessToken } = handlerInput.requestEnvelope.session.user;
-        // let decoded = jwt(accessToken)
-        // let userID = decoded.sub
-        let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         let description = '';
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -480,10 +481,9 @@ const CreateCatalogueHandler = {
     },
     async handle(handlerInput) {
         
-        // const { accessToken } = handlerInput.requestEnvelope.session.user;
-        // let decoded = jwt(accessToken)
-        // let userID = decoded.sub
-        let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -520,6 +520,9 @@ const OpenCatalogueHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'OpenCatalogueIntent';
     },
     async handle(handlerInput) {
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
 
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -582,6 +585,10 @@ const UpdateItemHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'UpdateItemIntent';
     },
     async handle(handlerInput) {
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
+
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -630,7 +637,10 @@ const DeleteItemHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteItemIntent';
     },
     async handle(handlerInput) {
-        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
+
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -701,7 +711,9 @@ const AddReminderIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AddReminderIntent';
     },
     async handle(handlerInput) {
-        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -755,7 +767,9 @@ const UpdateReminderHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'UpdateReminderIntent';
     },
     async handle(handlerInput) {
-        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -819,7 +833,9 @@ const ViewCatalogueOfItemIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewCatalogueOfItemIntent';
     },
     async handle(handlerInput) {
-        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -886,7 +902,9 @@ const DeleteCatalogueIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteCatalogueIntent';
     },
     async handle(handlerInput) {
-        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -942,7 +960,9 @@ const ViewCataloguesIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewCataloguesIntent';
     },
     async handle(handlerInput) {
-        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -991,7 +1011,9 @@ const ViewTodayReminderIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewTodayReminderIntent';
     },
     async handle(handlerInput) {
-        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -1052,7 +1074,9 @@ const ViewDescriptionHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewDescriptionIntent';
     },
     async handle(handlerInput) {
-    
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -1095,7 +1119,9 @@ const ViewReminderHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewReminderIntent';
     },
     async handle(handlerInput) {
-    
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -1149,7 +1175,9 @@ const DeleteReminderIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteReminderIntent';
     },
     async handle(handlerInput) {
-        
+        const { accessToken } = handlerInput.requestEnvelope.session.user;
+        let decoded = jwt(accessToken)
+        let userID = decoded.sub
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
