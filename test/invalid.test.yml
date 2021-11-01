@@ -1,0 +1,61 @@
+---
+configuration:
+    locales: en-US
+
+---
+- test: Delete item from catalogue which does not exist
+- DeleteItemIntent catalog=kitchen item=mug: "Item deletion failed"
+
+---
+
+- test: Creating a catalogue with a already existing name
+- CreateCatalogueIntent catalog=books: "Catalogue name already exists. Try again with a diffrent name."
+
+---
+
+- test: Adding an item to a catalogue which does not exist
+- CatalogAddItemIntent catalog=kitchen item=mug description=regular: "Catalogue does not exist"
+
+---
+
+- test: View items in a catalogue which has no items
+- OpenCatalogueIntent catalog=tables: "There are no items in tables"
+
+---
+
+# - test: Update the description of an item in a catalogue which does not exist
+# - UpdateItemIntent item=mug catalog=kitchen description=regular: "Update failed. Catalogue name does not exists."
+
+---
+# - test: Delete an item
+# - DeleteItemIntent item=tom_sawyer catalog=book_collection: "tom_sawyer is deleted from the book_collection"
+
+---
+# - test: Adding a reminder to an item
+# - AddReminderIntent item=tom_sawyer catalogue=book_collection date=10/02/2021: "You Successfully added a reminder to tom_sawyer in the book_collection catalog. It is 10/02/2021"
+
+---
+# - test: Update the reminder of an item
+# - UpdateReminderIntent item=tom_sawyer catalog=book_collection reminder=11/02/2021: "Reminder of the tom_sawyer in the book_collection catalog is updated into 11/02/2021"
+
+---
+- test: View the description of an invalid item
+- ViewDescriptionIntent item=mug catalog=kitchen: "Invalid item name"
+
+---
+# - test: View the reminder of an item
+# - ViewReminderIntent item=tom_sawyer catalog=book_collection: "Invalid item name"
+
+---
+# - test: View the catalogue of an invalid item
+# - ViewCatalogueOfItemIntent item=mug: "Couldn't find the catalogue for the mug"
+
+---
+- test: Delete a catalogue which does not exist
+- DeleteCatalogueIntent catalog=kitchen: "Catalogue deletion failed"
+
+---
+# - test: View all catalogues
+# - ViewCataloguesIntent : "Catalogues; "
+
+---

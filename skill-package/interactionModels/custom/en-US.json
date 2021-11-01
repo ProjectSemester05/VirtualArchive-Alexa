@@ -105,8 +105,9 @@
                         }
                     ],
                     "samples": [
-                        "new catalogue {catalog}",
-                        "create a catalogue {catalog}",
+                        "create a catalogue as {catalog}",
+                        "create the catalogue",
+                        "create catalogue",
                         "create a catalogue"
                     ]
                 },
@@ -180,12 +181,32 @@
                             }
                         },
                         {
+                            "name": "description",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {description}",
+                                "{description}",
+                                "reminder is {description}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
                             "name": "date",
                             "type": "AMAZON.DATE",
                             "samples": [
-                                "it is {date}",
-                                "{date}",
-                                "reminder is {date}"
+                                "{date}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "{time}"
                             ],
                             "multipleValues": {
                                 "enabled": true
@@ -224,12 +245,33 @@
                             }
                         },
                         {
-                            "name": "reminder",
+                            "name": "description",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "it is {description}",
+                                "{description}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "date",
                             "type": "AMAZON.DATE",
                             "samples": [
-                                "reminder is {reminder}",
-                                "it is {reminder}",
-                                "{reminder}"
+                                "reminder is {date}",
+                                "it is {date}",
+                                "{date}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME",
+                            "samples": [
+                                "{time}"
                             ],
                             "multipleValues": {
                                 "enabled": true
@@ -433,6 +475,38 @@
                     "samples": [
                         "show today reminders",
                         "view today reminders"
+                    ]
+                },
+                {
+                    "name": "DeleteReminderIntent",
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "{item}",
+                                "it is {item}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "{catalog}",
+                                "it is {catalog}"
+                            ],
+                            "multipleValues": {
+                                "enabled": true
+                            }
+                        }
+                    ],
+                    "samples": [
+                        "delete reminder in {item} in {catalog}",
+                        "delete reminder in {item}",
+                        "delete reminder "
                     ]
                 }
             ],
@@ -853,12 +927,30 @@
                             }
                         },
                         {
+                            "name": "description",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1508422375977.1430887811625"
+                            }
+                        },
+                        {
                             "name": "date",
                             "type": "AMAZON.DATE",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
-                                "elicitation": "Elicit.Slot.1508422375977.1430887811625"
+                                "elicitation": "Elicit.Slot.1490684826316.851288695229"
+                            }
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1490684826316.757751580722"
                             }
                         }
                     ]
@@ -887,12 +979,30 @@
                             }
                         },
                         {
-                            "name": "reminder",
+                            "name": "description",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1498155483258.806420727048"
+                            }
+                        },
+                        {
+                            "name": "date",
                             "type": "AMAZON.DATE",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
                                 "elicitation": "Elicit.Slot.785282453882.176414854646"
+                            }
+                        },
+                        {
+                            "name": "time",
+                            "type": "AMAZON.TIME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1498155483258.375268147311"
                             }
                         }
                     ]
@@ -1002,6 +1112,32 @@
                             "prompts": {
                                 "confirmation": "Confirm.Slot.288012993957.1425639790003",
                                 "elicitation": "Elicit.Slot.288012993957.1425639790003"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "DeleteReminderIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "item",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1220891971916.93785889266"
+                            }
+                        },
+                        {
+                            "name": "catalog",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.1220891971916.1093754182924",
+                                "elicitation": "Elicit.Slot.1220891971916.1093754182924"
                             }
                         }
                     ]
@@ -1161,7 +1297,7 @@
                     },
                     {
                         "type": "PlainText",
-                        "value": "what is the new reminder?"
+                        "value": "what is the new reminder date?"
                     }
                 ]
             },
@@ -1426,6 +1562,97 @@
                     {
                         "type": "PlainText",
                         "value": "what is the description?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1490684826316.851288695229",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the reminder date?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "when is the date?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1490684826316.757751580722",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "at what time?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the reminder time?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the time?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1220891971916.93785889266",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the item name"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the item name?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1220891971916.1093754182924",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the catalogue name of {item}"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "in which catalogue?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1220891971916.1093754182924",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "are you sure to remove the reminder from {item} in {catalog} ? Say cancel otherwise"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1498155483258.375268147311",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the updated time"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the time to update?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1498155483258.806420727048",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me the reminder to update"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the new reminder"
                     }
                 ]
             }

@@ -4,63 +4,63 @@ configuration:
 
 ---
 - test: Launch Virtual Archive
-- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently!"
+- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently! You have 1 reminder today"
 
 ---
 - test: Help Intent
 - AMAZON.HelpIntent: "You can say hello to me! How can I help?"
 
 ---
-- test: Delete Item
-- DeleteItemIntent catalog=kitchen item=mug: "mug is deleted from the kitchen"
 
----
-- test: Adding an item to a catalogue with description
-- CatalogAddItemIntent catalog=kitchen item=mug description=blue_one: "You Successfully added mug to the kitchen catalogue, saying blue_one"
-
----
 - test: Creating a catalogue
-- CreateCatalogueIntent catalog=book_collection: "You successfully created book_collection catalogue."
+- CreateCatalogueIntent catalog=foods: "You successfully created foods catalogue."
+
+---
+
+- test: Adding an item to a catalogue with description
+- CatalogAddItemIntent catalog=foods item=pizza description=regular: "You Successfully added pizza to the foods catalogue, saying regular"
 
 ---
 - test: View items in a catalogue
-- OpenCatalogueIntent catalog=garage: "Items in garage are cutter, car, rake"
+- OpenCatalogueIntent catalog=foods: "Items in foods are pizza"
 
 ---
 - test: Update the description of an item
-- UpdateItemIntent item=tom_sawyer catalog=book_collection description=adventurous: "Description of the tom_sawyer in the book_collection catalog is updated to adventurous"
-
----
-- test: Delete an item
-- DeleteItemIntent item=tom_sawyer catalog=book_collection: "tom_sawyer is deleted from the book_collection"
+- UpdateItemIntent item=tomsawyer catalog=books description=adventurous: "Description of the tomsawyer in the books catalog is updated to adventurous"
 
 ---
 - test: Adding a reminder to an item
-- AddReminderIntent item=tom_sawyer catalogue=book_collection date=10/02/2021: "You Successfully added a reminder to tom_sawyer in the book_collection catalog. It is 10/02/2021"
+- AddReminderIntent item=tomsawyer catalogue=books date=26-10-2021: "You Successfully added a reminder to tomsawyer in the books catalog. It is 26-10-2021"
 
 ---
-- test: Update the reminder of an item
-- UpdateReminderIntent item=tom_sawyer catalog=book_collection reminder=11/02/2021: "Reminder of the tom_sawyer in the book_collection catalog is updated into 11/02/2021"
+# - test: Update the reminder of an item
+# - UpdateReminderIntent item=tom_sawyer catalog=book_collection reminder=11/02/2021: "Reminder of the tom_sawyer in the book_collection catalog is updated into 11/02/2021"
 
 ---
 - test: View the description of an item
-- ViewDescriptionIntent item=car catalog=garage: "Description of car is red car"
+- ViewDescriptionIntent item=tomsawyer catalog=books: "Description of tomsawyer is adventurous"
 
 ---
+
 - test: View the reminder of an item
-- ViewReminderIntent item=tom_sawyer catalog=book_collection: "Invalid item name"
+- ViewReminderIntent item=tomsawyer catalog=books: "Reminder of tomsawyer is due on 26-10-2021. And it is This is a reminder"
 
 ---
 - test: View the catalogue of an item
-- ViewCatalogueOfItemIntent item=mug: "Catalogue of the mug is kitchen items"
+- ViewCatalogueOfItemIntent item=tomsawyer: "Catalogue of the tomsawyer is books,"
+
+---
+
+- test: Delete an item
+- DeleteItemIntent item=pizza catalog=foods: "pizza is deleted from the foods"
 
 ---
 - test: Delete a catalogue
-- DeleteCatalogueIntent catalog=book_collection: "book_collection catalogue is deleted"
+- DeleteCatalogueIntent catalog=foods: "foods catalogue is deleted"
 
-# ---
-# - test: View all catalogues
-# - ViewCataloguesIntent : "Catalogues: Tools, garage, necessary tools, kitchen, languages, book_collection,"
+---
+- test: View all catalogues
+- ViewCataloguesIntent : "Catalogues; "
 
 ---
 - test: Cancel command
@@ -69,3 +69,10 @@ configuration:
 ---
 - test: Stop command
 - AMAZON.StopIntent : "Execution Cancelled"
+
+---
+
+- test: Fall Back
+- AMAZON.FallbackIntent : "Sorry, I don't know about that. Please try again."
+
+---

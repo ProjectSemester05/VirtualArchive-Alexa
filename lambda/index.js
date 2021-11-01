@@ -6,22 +6,22 @@ const dynamoDBTableName = "CatalogueDB";
 const demo_data = require('./documents/demoData.json');
 const jwt = require("jwt-decode")
 //const main = require('./main.json');
-const {getRemoteData} = require('./api/api-get-data.js');
+// const {getRequest} = require('./api/api-get-data.js');
 // const {deleteRequest} = require('./api/api-delete-data.js');
 const base_url = 'https://n8l7szvh3j.execute-api.us-east-1.amazonaws.com/dev'
-
+let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
 //get request
 const getRequest = async (url, userID) => {
     try {
-      let response =  await axios.get(url, 
-            {
-                headers: {UserID: userID}
-            }
-            ); 
-      return {success: true};
+        let response =  await axios.get(url, {headers: { userid: userID}}) 
+        // console.log("success");
+        let data = response.data;
+        // console.log(data);
+        return {data, success: true};
   
     } catch (error) {
-      return {success: false};
+        // console.log("error");
+        return {error, success: false};
     }
 };
 //post request to store catalogue name
@@ -32,17 +32,84 @@ const postRequest = async (userID, catalog) => {
                 CatalogueName: catalog
             },
             {
-                headers: {UserID: userID}
+                headers: {userid: userID}
             }
             );
-        let data = res.data;
-        // console.log("in : ",data);
-        return res
+        let res_data = res.data;
+        // console.log(res_data);
+        return {res_data, success: true};
     }catch (err) {
-        console.log(err);
+        // console.log(err);
+        return {err, success: false};
     }
 }
 
+const postRequestReminder = async (userID,date, description,time, itemUUID) => {
+    try {
+        const res = await axios.post(`${base_url}/reminder/new`,
+            {
+                ReminderDate: date,
+                ReminderTime: time,
+                Description: description,
+                ItemUUID: itemUUID
+            },
+            {
+                headers: {userid: userID}
+            }
+            );
+        let res_data = res.data;
+        // console.log(res_data);
+        return {res_data, success: true};
+    }catch (err) {
+        // console.log(err);
+        return {err, success: false};
+    }
+}
+
+const updateRequest = async (userID, item, description,catalogUUID,uuid) => {
+    try {
+        const res = await axios.put(`${base_url}/item/edit`,
+            {
+                ItemName: item,
+                CatalogueUUID: catalogUUID,
+                Description: description,
+                UUID: uuid
+            },
+            {
+                headers: {userid: userID}
+            }
+            );
+        let res_data = res.data;
+        // console.log(res_data);
+        return {res_data, success: true};
+    }catch (err) {
+        // console.log(err);
+        return {err, success: false};
+    }
+}
+
+const updateRequestReminder = async (userID, reminder, description,itemUUID,time,uuid) => {
+    try {
+        const res = await axios.put(`${base_url}/reminder/edit`,
+            {   
+                UUID: uuid,
+                ReminderDate: reminder,
+                ReminderTime: time,
+                Description: description,
+                ItemUUID: itemUUID
+            },
+            {
+                headers: {userid: userID}
+            }
+            );
+        let res_data = res.data;
+        // console.log(res_data);
+        return {res_data, success: true};
+    }catch (err) {
+        console.log(err);
+        return {err, success: false};
+    }
+}
 //post request to store item in a catalogue
 const postRequestItem = async (userID,catalogUUID,item,description) => {
     try {
@@ -52,24 +119,48 @@ const postRequestItem = async (userID,catalogUUID,item,description) => {
                 CatalogueUUID: catalogUUID,
                 Description: description,
                 UserID: userID
+            },
+            {
+                headers: {userid: userID}
             }
             );
         let data = res.data;
         // console.log("in : ",data);
-        return res
+        return {data, success: true};
     }catch (err) {
-        console.log(err);
+        // console.log(err);
+        return {err, success: false};
     }
 }
 const deleteRequest = async (url) => {
     try {
-        console.log(url)
-      let response = await axios.delete(url,{});
-      return {success: true};
+        // console.log(url)
+        let res = await axios.delete(url,
+        {
+            headers: {userid: userID}
+        });
+        let data = res.data;
+        // console.log(data);
+        return {data,success: true};
   
     } catch (error) {
-      return {success: false};
+      return {error,success: false};
     }
+}
+
+const todayDate = () => {
+    var today = new Date();
+    var month = today.getMonth()+1
+    if(month < 10){
+        month = '0'+month
+    }
+    let today_date = today.getDate()
+    if(today_date < 10){
+        today_date = '0'+today_date
+    }
+    
+    var date = today_date+'-'+month+'-'+today.getFullYear();
+    return date
 }
 //executes when launch intent triggers
 const LaunchRequestHandler = {
@@ -82,28 +173,18 @@ const LaunchRequestHandler = {
         // let userID = decoded.sub
         
         let count = 0
-        var today = new Date();
-        var month = today.getMonth()+1
-        if(month < 10){
-            month = '0'+month
-        }
-        let today_date = today.getDate()
-        if(today_date < 10){
-            today_date = '0'+today_date
-        }
-        
-        var date = today_date+'-'+month+'-'+today.getFullYear();
+        let date = todayDate();
         // date = '01-10-2021'
         let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
         // console.log(`${base_url}/reminder-by-user`)
-        await getRequest(`https://n8l7szvh3j.execute-api.us-east-1.amazonaws.com/dev/reminder-by-user`,userID)
-            .then((response) => {
-                const data = JSON.parse(response);
-
+        await getRequest(`${base_url}/reminder-by-user`,userID)
+            .then((response) => {               
+                const data = JSON.parse(JSON.stringify(response.data));
                 let Reminders = data.Reminders;
-                console.log(Reminders)
+                // console.log(Reminders);
+                
                 Reminders.forEach(remind => {
-                    // console.log(remind.ReminderDate)
+                    // console.log(remind.Date)
                     // console.log(date)
                     if(remind.ReminderDate === date){
                         count = count +1
@@ -318,6 +399,7 @@ const nextBackIntentHandler = {
   },
 };
 
+//add item to a catalogue
 const CatalogueAddItemHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -327,42 +409,53 @@ const CatalogueAddItemHandler = {
         // const { accessToken } = handlerInput.requestEnvelope.session.user;
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
-        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+        let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
+        let description = '';
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         const item = Alexa.getSlotValue(requestEnvelope, 'item');
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
-        const description = Alexa.getSlotValue(requestEnvelope, 'description');
+        description = Alexa.getSlotValue(requestEnvelope, 'description');
         
         let catalogUUID ='';
         let speechText = "";
         
-        await getRemoteData(`${base_url}/catalogue-by-name/${catalog}`)
+        await getRequest(`${base_url}/catalogue-by-name/${catalog}`,userID)
             .then((response) => {
-                const data = JSON.parse(response);
-    
+                const data = JSON.parse(JSON.stringify(response.data));
+                
                 catalogUUID = data.Catalogues[0].UUID;
+                // console.log(catalogUUID);
+                
                 // speechText = catalogUUID;
             })
             .catch((err) => {
+                speechText = 'Catalogue does not exist';
                 console.log(`ERROR: ${err.message}`);
             })
         
-        await postRequestItem(userID,catalogUUID,item,description);
+        await postRequestItem(userID,catalogUUID,item,description)
         
-        
-        
-        if (description !== null && description !== undefined){
-            speechText = speechText+ "You Successfully added "+item+" to the "+catalog+" catalogue, saying "+description
-        } else {
-            speechText = speechText+ "You Successfully added "+item+" to the "+catalog+" catalogue"
-        }
-            
-        
-        
-        
-        
+            .then((response) => {
+                // console.log(response)
+                if(response.success == true){
+                    if (description !== null && description !== undefined){
+                        speechText = speechText+ "You Successfully added "+item+" to the "+catalog+" catalogue, saying "+description
+                    } else {
+                        speechText = speechText+ "You Successfully added "+item+" to the "+catalog+" catalogue"
+                    }
+                } 
+                else{
+                    speechText = 'Catalogue does not exist';
+                }
+                
+            })
+            .catch((err) => {
+                // console.log(`ERROR: ${err.message}`);
+                speechText = 'You have failed to add the item.';
+            })
+                
         // const speakOutput = 'You can say hello to me! How can I help?';
 
         return handlerInput.responseBuilder
@@ -383,7 +476,7 @@ const CreateCatalogueHandler = {
         // const { accessToken } = handlerInput.requestEnvelope.session.user;
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
-        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
+        let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
@@ -391,10 +484,22 @@ const CreateCatalogueHandler = {
         
         let speechText = ""
         
-        await postRequest(userID,catalog);
+        await postRequest(userID,catalog)
+        .then((response) => {
+            // console.log(response.success);
+            if(response.success == true){
+                speechText = "You successfully created "+ catalog +" catalogue."
+            }
+            else{
+                speechText = "Catalogue name already exists. Try again with a diffrent name."
+            }
+        })
+        .catch((err) => {
+            // console.log('err');
+            speechText = "Error occurred while creating the catalogue. Try again with a diffrent name."
+        });
         // return HelpIntentHandler.handle(handlerInput);
-        speechText = "You successfully created "+ catalog +" catalogue."
-
+        
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
@@ -418,20 +523,20 @@ const OpenCatalogueHandler = {
 
         let catalogUUID = ""
 
-        await getRemoteData(`${base_url}/catalogue-by-name/${catalog}`)
+        await getRequest(`${base_url}/catalogue-by-name/${catalog}`,userID)
             .then((response) => {
-                const data = JSON.parse(response);
-
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
                 catalogUUID = data.Catalogues[0].UUID;
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
 
-        await getRemoteData(`${base_url}/item-by-catalogue-uuid/${catalogUUID}`)
+            await getRequest(`${base_url}/item-by-catalogue-uuid/${catalogUUID}`,userID)
             .then((response) => {
-                const data = JSON.parse(response);
-
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
                 let allItems = data.Items
 
                 if (allItems.length === 0) {
@@ -469,7 +574,7 @@ const UpdateItemHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'UpdateItemIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -479,11 +584,32 @@ const UpdateItemHandler = {
         const description = Alexa.getSlotValue(requestEnvelope, 'description');
         
         let speechText = "";
-        
-        speechText = "Description of the " +item+ " in the "+catalog+" catalog is updated to "+description ;
-        
-        
-        // const speakOutput = 'You can say hello to me! How can I help?';
+        let catalogUUID = '8df3136c-bb2a-491d-9fa3-2f09bae6d977';
+        let uuid = '106d445f-0fcb-4179-ad3b-dda17b0c2814';
+
+        await getRequest(`${base_url}/item-by-name/${catalogUUID}`,userID)
+            .then((response) => {
+                const data = JSON.parse(JSON.stringify(response));
+                // console.log(data);
+
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+        await updateRequest(userID,item,description,catalogUUID,uuid)
+        .then((response) => {
+            // console.log(response.success);
+            if(response.success === true){
+                speechText = "Description of the " +item+ " in the "+catalog+" catalog is updated to "+description ;
+            }
+            else{
+                speechText = "Failed to update the description"
+            }
+        })
+        .catch((err) => {
+            // console.log('err');
+            speechText = "Update failed. Catalogue name does not exists."
+        });
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -496,7 +622,7 @@ const DeleteItemHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteItemIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -504,10 +630,54 @@ const DeleteItemHandler = {
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
         const item = Alexa.getSlotValue(requestEnvelope, 'item');
         
-        let speechText = ""
+        let speechText = "";
+        let itemUUID = "";
+        let catalogueUUID = "";
+
+        await getRequest(`${base_url}/item-uuid/${catalog}/${item}`,userID)
+        .then((response) => {
+            const data = JSON.parse(JSON.stringify(response.data));
+
+            itemUUID = data.itemUuid;
+
+        })
+        .catch((err) => {
+            speechText = "Item deletion failed";
+            // console.log(`ERROR: ${err.message}`);
+        })
+
+        if(itemUUID == ""){
+            await getRequest(`${base_url}/catalogue-by-name/${catalog}`,userID)
+            .then((response) => {
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
+                catalogueUUID = data.Catalogues[0].UUID;
+                speechText = item+" item does not exist";
+            })
+            .catch((err) => {
+                speechText = catalog+" catalogue does not exist";
+                // console.log(`ERROR: ${err.message}`);
+            })
+           
+        }
+        else{
+            await deleteRequest(`${base_url}/item/${itemUUID}`,userID)
+                .then((response) => {
+                    // console.log(response);
+                    if(response.success == true){
+                        speechText = item + " is deleted from the " + catalog;
+                    }
+                    else{
+                        speechText = "Item deletion failed";
+                    }
+
+                })
+                .catch((err) => {
+                    speechText = "Item deletion failed";
+                    // console.log(`ERROR: ${err.message}`);
+                })
+        }
         
- 
-        speechText = item + " is deleted from the " + catalog;
         
         // const speakOutput = 'You can say hello to me! How can I help?';
 
@@ -523,18 +693,47 @@ const AddReminderIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AddReminderIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         const item = Alexa.getSlotValue(requestEnvelope, 'item');
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalogue');
-        const reminder = Alexa.getSlotValue(requestEnvelope, 'date');
-        
+        const description = Alexa.getSlotValue(requestEnvelope, 'description');
+        const date = Alexa.getSlotValue(requestEnvelope, 'date');
+        const time = Alexa.getSlotValue(requestEnvelope, 'time');
+        let itemUUID = '';
         let speechText = ""
+
+        await getRequest(`${base_url}/item-uuid/${catalog}/${item}`,userID)
+        .then((response) => {
+            const data = JSON.parse(JSON.stringify(response.data));
+
+            itemUUID = data.itemUuid;
+
+        })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        })
+        // console.log(itemUUID);
+        await postRequestReminder(userID, date, description,time, itemUUID)
+        .then((response) => {
+            const data = JSON.parse(JSON.stringify(response));
+            // console.log(data);
+            if(data.success === true){
+                speechText = "You successfully added a reminder to "+item+" in the "+catalog+" catalog. It is "+description+". And it is due on "+date+" at "+time+".";
+            }
+            else{
+                speechText = "You have failed to add the reminder";
+            }
+
+
+        })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        })
         
-        speechText = "You Successfully added a reminder to "+item+" in the "+catalog+" catalog. It is "+reminder ;
         // const speakOutput = 'You can say hello to me! How can I help?';
 
         return handlerInput.responseBuilder
@@ -548,21 +747,57 @@ const UpdateReminderHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'UpdateReminderIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
 
         const item = Alexa.getSlotValue(requestEnvelope, 'item');
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
-        const reminder = Alexa.getSlotValue(requestEnvelope, 'reminder');
+        const description = Alexa.getSlotValue(requestEnvelope, 'description');
+        const date = Alexa.getSlotValue(requestEnvelope, 'date');
+        const time = Alexa.getSlotValue(requestEnvelope, 'time');
         
         let speechText = "";
+        let itemUUID = "";
+        let reminder_uuid= '';
+        await getRequest(`${base_url}/item-uuid/${catalog}/${item}`,userID)
+        .then((response) => {
+            const data = JSON.parse(JSON.stringify(response.data));
+
+            itemUUID = data.itemUuid;
+
+        })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        });
+
+        await getRequest(`${base_url}/reminder-by-item/${itemUUID}`,userID)
+            .then((response) => {
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
+                reminder_uuid =  data.Reminders[0].UUID;
+                
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+        // console.log(reminder)
+        await updateRequestReminder(userID,date,description,itemUUID,time,reminder_uuid)
+        .then((response) => {
+            // console.log(response.success);
+            if(response.success === true){
+                speechText = `Reminder of the ${item} in ${catalog} is updated into ${description} which is due on ${date} at ${time}.` ;
+            }
+            else{
+                speechText = "Failed to update the reminder"
+            }
+        })
+        .catch((err) => {
+            // console.log('err');
+            speechText = "Error occurred while updating the reminder.";
+        });
         
-        speechText = "Reminder of the " +item+ " in the "+catalog+" catalog is updated into "+reminder ;
-        
-        
-        // const speakOutput = 'You can say hello to me! How can I help?';
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -576,7 +811,7 @@ const ViewCatalogueOfItemIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ViewCatalogueOfItemIntent';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         
         const {requestEnvelope, responseBuilder} = handlerInput;
         const {intent} = requestEnvelope.request;
@@ -584,9 +819,50 @@ const ViewCatalogueOfItemIntentHandler = {
         const item = Alexa.getSlotValue(requestEnvelope, 'item');
 
         let speechText = "";
-        
-        speechText = "Catalogue of the "+item+" is kitchen items";
-        
+        let catalogueUUID = []
+        let counter = 0
+        let catalogText = ''
+        await getRequest(`${base_url}/item-by-name/${item}`,userID)
+        .then((response) => {
+            const data = JSON.parse(JSON.stringify(response.data));
+            // console.log(data);
+            data.Items.forEach(item=> {
+                catalogueUUID.push(item.CatalogueUUID);
+            });
+            // catalogueUUID = data.Catalogues[0].CatalogueUUID;
+            
+        })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        })
+
+        for(uuid of catalogueUUID) {
+            await getRequest(`${base_url}/catalogue/${uuid}`,userID)
+            .then((response) => {
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
+                catalogueName = data.catalogue.CatalogueName;
+                catalogText += catalogueName + ", "
+                // speechText = "Catalogue of the "+item+" is "+catalogueName;
+                counter += 1
+                
+            })
+            .catch((err) => {
+                console.log(`ERROR: ${err.message}`);
+            })
+        }
+        if(counter == 1){
+            speechText = "Catalogue of the "+item+" is "+catalogText;
+        }
+        else if(counter > 1){
+            speechText = "There are "+counter+" catalogues for "+item;
+            speechText += ". They are "+catalogText;
+        }
+        else{
+            speechText = "Couldn't find the catalogue for the "+item;
+        }
+
+        // console.log(speechText);        
         
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -610,31 +886,38 @@ const DeleteCatalogueIntentHandler = {
         const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
 
         let speechText = "";
-        let userID = '14082a4d-35d1-4450-97c3-393730cffa29';
         let catalogueUUID = '';
 
         //get the uuid of the catalogue from catalogue name
-        await getRemoteData(`${base_url}/catalogue-by-name/${catalog}`)
+        await getRequest(`${base_url}/catalogue-by-name/${catalog}`,userID)
             .then((response) => {
-                const data = JSON.parse(response);
-
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
                 catalogueUUID = data.Catalogues[0].UUID;
                 
             })
             .catch((err) => {
+                speechText = 'Invalid item name'
                 console.log(`ERROR: ${err.message}`);
             })
-        console.log(catalogueUUID);
+        // console.log(catalogueUUID);
 
         //delete the catalogue using catalogue uuid
-        await deleteRequest(`${base_url}/catalogue/${catalogueUUID}`)
+        await deleteRequest(`${base_url}/catalogue/${catalogueUUID}`,userID)
             .then((response) => {
-                // const data2 = JSON.parse(response);
-                // speechText = data2;
-                speechText = catalog+" catalogue is deleted";
+                // console.log(response);
+                if(response.success == true){
+                    // const data2 = JSON.parse(response);
+                    // speechText = data2;
+                    speechText = catalog+" catalogue is deleted";
+                }
+                else{
+                    speechText = "Catalogue deletion failed";
+                }
+
             })
             .catch((err) => {
-                speechText = catalog+" does not exist";
+                speechText = catalog+" catalogue does not exist";
                 console.log(`ERROR: ${err.message}`);
             })
           
@@ -645,6 +928,7 @@ const DeleteCatalogueIntentHandler = {
     }
 };
 
+//view all the catalogues of the user
 const ViewCataloguesIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -660,22 +944,31 @@ const ViewCataloguesIntentHandler = {
         // const { accessToken } = handlerInput.requestEnvelope.session.user;
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
-        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
-        await getRemoteData(`${base_url}/catalogue-by-user-id/${userID}`)
-            .then((response) => {
-                const data = JSON.parse(response);
 
-                let catalogs = data.Items;
-                
-                catalogs.forEach(catalog=> {
-                    speechText = speechText+catalog.CatalogueName+", "
-                });
+        await getRequest(`${base_url}/catalogue-by-user/`,userID)
+            .then((response) => {
+                if(response.success == true){
+                    const data = JSON.parse(JSON.stringify(response.data));
+                    // console.log(data);
+    
+                    let catalogs = data.Catalogues;
+                    // console.log(catalogs)
+                    catalogs.forEach(catalog=> {
+                        // console.log(catalog.CatalogueName);
+                        speechText = speechText+catalog.CatalogueName+", "
+                    });
+                }
+                else{
+                    speechText = "There are no catalogue found"
+                }
+
 
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
         })
-        // speechText = "Catalogues: kitchen items,default catalogue,book collections";
+        // console.log(speechText)
+        // speechText = "Catalogues; kitchen items,default catalogue,book collections";
         
         
         return handlerInput.responseBuilder
@@ -696,21 +989,24 @@ const ViewTodayReminderIntentHandler = {
         const {intent} = requestEnvelope.request;
 
         let speechText = "Following items have reminders today; ";
-        
+ 
         // const { accessToken } = handlerInput.requestEnvelope.session.user;
         // let decoded = jwt(accessToken)
         // let userID = decoded.sub
-        let userID = '14082a4d-35d1-4450-97c3-393730cffa29'
-        const itemUUID_array = []
-        await getRemoteData(`${base_url}/reminder-by-user/${userID}`)
-            .then((response) => {
-                const data = JSON.parse(response);
 
-                let reminders = data.Reminders;
+        const itemUUID_array = []
+        await getRequest(`${base_url}/reminder-by-user`,userID)
+            .then((response) => {
+                const data = JSON.parse(JSON.stringify(response.data));
                 
+                let reminders = data.Reminders;
+                // console.log(reminders);
                 reminders.forEach(remind=> {
-                    let itemuuid = remind.ItemUUID;
-                    itemUUID_array.push(itemuuid)
+                    if(remind.ReminderDate === todayDate()){
+                        let itemuuid = remind.ItemUUID;
+                        itemUUID_array.push(itemuuid)
+                    }
+                    
                 });
 
             })
@@ -719,24 +1015,22 @@ const ViewTodayReminderIntentHandler = {
             })
         
         for(const uuid of itemUUID_array){
-            await getRemoteData(`${base_url}/item/${uuid}`)
+            await getRequest(`${base_url}/item/${uuid}`,userID)
             .then((response) => {
-                const data = JSON.parse(response);
-
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
                 let name = data.item.ItemName;
                 
                 speechText = speechText + name+ ',' ;
-
-                
-
 
             })
             .catch((err) => {
                 console.log(`ERROR: ${err.message}`);
             })
         }
-        // speechText = "Catalogues: kitchen items,default catalogue,book collections";
+ 
         speechText = speechText.slice(0, -1);
+        // console.log(speechText);
         
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -752,31 +1046,33 @@ const ViewDescriptionHandler = {
     },
     async handle(handlerInput) {
     
-            const {requestEnvelope, responseBuilder} = handlerInput;
-            const {intent} = requestEnvelope.request;
-    
-            const item = Alexa.getSlotValue(requestEnvelope, 'item');
-            const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
-    
-            let speechText = ``;
-    
-            let descript =''
-    
-            await getRemoteData(`${base_url}/item-description/${catalog}/${item}`)
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+
+        let speechText = ``;
+
+        let descript =''
+
+        await getRequest(`${base_url}/item-description/${catalog}/${item}`,userID)
             .then((response) => {
-                    const data = JSON.parse(response);
-    
-                    descript = data.description;
-    
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data)
+                descript = data.description;
+                speechText = `Description of ${item} is ${descript}`;
+
             })
             .catch((err) => {
+                speechText = 'Invalid item name'
                 console.log(`ERROR: ${err.message}`);
             })
-    
-            if(descript === ''){
-                speechText = 'Invalid item name'
-            }
-            speechText = `Description of ${item} is ${descript}`
+
+        if(descript === ''){
+            speechText = 'Invalid item name'
+        }
+            
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -793,77 +1089,111 @@ const ViewReminderHandler = {
     },
     async handle(handlerInput) {
     
-            const {requestEnvelope, responseBuilder} = handlerInput;
-            const {intent} = requestEnvelope.request;
-    
-            const item = Alexa.getSlotValue(requestEnvelope, 'item');
-            const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
-    
-            let speechText = ``;
-    
-            let catalogUUID = ""
-            let item_uuid = '';
-            
-            await getRemoteData(`${base_url}/catalogue-by-name/${catalog}`)
-                .then((response) => {
-                    const data = JSON.parse(response);
-    
-                    catalogUUID = data.Catalogues[0].UUID;
-    
-                })
-                .catch((err) => {
-                    console.log(`ERROR: ${err.message}`);
-                })
-    
-            await getRemoteData(`${base_url}/item-by-catalogue-uuid/${catalogUUID}`)
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
+
+        let speechText = ``;
+
+        let catalogUUID = ""
+
+        let itemUUID = '';
+
+        await getRequest(`${base_url}/item-uuid/${catalog}/${item}`,userID)
+        .then((response) => {
+            const data = JSON.parse(JSON.stringify(response.data));
+
+            itemUUID = data.itemUuid;
+
+        })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        })
+
+        await getRequest(`${base_url}/reminder-by-item/${itemUUID}`,userID)
             .then((response) => {
-                const data = JSON.parse(response);
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
+                let reminder_time =  data.Reminders[0].ReminderTime;
+                let reminder_data = data.Reminders[0].ReminderDate;
+                let description = data.Reminders[0].Description;
+                speechText = `Reminder of ${item} is due on ${reminder_data} at ${reminder_time}. And it is ${description}.`;
+            })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        })
+            
 
-                let allItems = data.Items
-                
+        if(speechText === ''){
+            speechText = 'Invalid item name'
+        }
 
-                allItems.forEach(dbitem => {
-                    if(dbitem.ItemName.localeCompare(item) === 0){
-                        speechText = `Reminder of ${item} is ${dbitem.Reminder}`;
-                        item_uuid = dbitem.UUID
-                    }
-                });
+    return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .getResponse();
+    }
+};
+const DeleteReminderIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DeleteReminderIntent';
+    },
+    async handle(handlerInput) {
+        
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
 
+        const item = Alexa.getSlotValue(requestEnvelope, 'item');
+        const catalog = Alexa.getSlotValue(requestEnvelope, 'catalog');
 
-                
-                if(speechText === ''){
-                    speechText = 'Invalid item name'
+        let speechText = "";
+        let catalogueUUID = '';
+        let uuid = '';
+        await getRequest(`${base_url}/item-uuid/${catalog}/${item}`,userID)
+        .then((response) => {
+            const data = JSON.parse(JSON.stringify(response.data));
+
+            itemUUID = data.itemUuid;
+
+        })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        })
+
+        await getRequest(`${base_url}/reminder-by-item/${itemUUID}`,userID)
+            .then((response) => {
+                const data = JSON.parse(JSON.stringify(response.data));
+                // console.log(data);
+                uuid = data.Reminders[0].UUID;
+            })
+        .catch((err) => {
+            console.log(`ERROR: ${err.message}`);
+        })
+        
+        await deleteRequest(`${base_url}/reminder/${uuid}`,userID)
+            .then((response) => {
+                // console.log(response);
+                if(response.success == true){
+                    speechText = `Reminder of ${item} in ${catalog} is deleted.`;
+                }
+                else{
+                    speechText = "Reminder deletion failed";
                 }
 
             })
             .catch((err) => {
-                console.log(`ERROR: ${err.message}`);
-            })
-            if(item_uuid !== ''){
-                await getRemoteData(`${base_url}/reminder/${catalogUUID}`)
-                    .then((response) => {
-                        const data = JSON.parse(response);
-        
-                        let reminder_data = data.reminder.Reminder;
-                        speechText = `Reminder of ${item} is ${reminder_data}`;
-                    })
-                .catch((err) => {
-                    console.log(`ERROR: ${err.message}`);
-                })
-                
-            }
-
-            if(speechText === ''){
-                speechText = 'Invalid item name'
-            }
-
+                speechText = "Item deletion failed";
+                // console.log(`ERROR: ${err.message}`);
+            })  
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
             .getResponse();
     }
 };
-
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -904,7 +1234,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+        const speakOutput = `Sorry, I don't know about that. Please try again.`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -993,6 +1323,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         DeleteCatalogueIntentHandler,
         ViewCataloguesIntentHandler,
         ViewTodayReminderIntentHandler,
+        DeleteReminderIntentHandler,
         FallbackIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler)

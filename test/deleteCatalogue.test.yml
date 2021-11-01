@@ -3,8 +3,104 @@ configuration:
     locales: en-US
 
 ---
-# - test: Delete a Catalogue
-# - DeleteCatalogueIntent catalog=book_collection: "book_collection catalogue is deleted"
-- test: Launch request
-- LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently!"
+
+# - test: Launch request
+# - LaunchRequest: "Welcome to Virtual Archive. You can organize your items efficiently! You have 1 reminder today"
+
 ---
+
+# - test: Creating a catalogue
+# - CreateCatalogueIntent catalog=pens: "You successfully created pens catalogue."
+
+---
+
+# - test: Delete a Catalogue
+# - DeleteCatalogueIntent catalog=pens: "pens catalogue is deleted"
+
+---
+
+# - test: Creating a catalogue
+# - CreateCatalogueIntent catalog=books: "Catalogue name already exists. Try again with a diffrent name."
+
+---
+
+# - test: View items in a catalogue
+# - OpenCatalogueIntent catalog=books: "Items in books are potter"
+
+---
+
+# - test: Adding an item to a catalogue with description
+# - CatalogAddItemIntent catalog=books item=tomsawyer description=adventure: "You Successfully added tomsawyer to the books catalogue, saying adventure"
+
+---
+
+# - test: View the description of an item
+# - ViewDescriptionIntent item=tomsawyer catalog=books: "Description of tomsawyer is adventure"
+
+---
+
+# - test: View the reminder of an item
+# - ViewReminderIntent item=tomsawyer catalog=books: "Reminder of tomsawyer is 23-10-2021"
+
+---
+# - test: View the catalogue of an item
+# - ViewCataloguesIntent : "Catalogues; books"
+
+---
+
+# - test: View the catalogue of an item
+# - ViewCatalogueOfItemIntent item=tomsawyer: "There are 4 catalogues for tomsawyer. They are books, books, books, books,"
+
+---
+
+# - test: View today reminders
+# - ViewTodayReminderIntent: "Following items have reminders today; tomsawyer"
+
+---
+
+# - test: Update the description of an item
+# - UpdateItemIntent item=tomsawyer catalog=books description=action: "Description of the tomsawyer in the books catalog is updated to action"
+
+---
+
+- test: Adding a reminder to an item
+- AddReminderIntent item=tomsawyer catalogue=books description=librarydue date=25-10-2021 time=10:10AM: "You successfully added a reminder to tomsawyer in the books catalog. It is librarydue. And it is due on 25-10-2021 at 10:10AM."
+
+---
+
+- test: View the reminder of an item
+- ViewReminderIntent item=tomsawyer catalog=books: "Reminder of tomsawyer is due on 25-10-2021 at 10:10AM. And it is librarydue."
+
+---
+
+- test: Update the reminder of an item
+- UpdateReminderIntent item=tomsawyer catalog=books description=librarydue date=25-10-2021 time=10:11AM: "Reminder of the tomsawyer in books is updated into librarydue which is due on 25-10-2021 at 10:11AM."
+
+---
+
+- test: Delete the reminder of an item
+- DeleteReminderIntent item=tomsawyer catalog=books: "Reminder of tomsawyer in books is deleted."    
+
+---    
+# - test: Creating a catalogue
+# - CreateCatalogueIntent catalog=foods: "Catalogue name already exists. Try again with a diffrent name."
+
+# ---
+
+# - test: Adding an item to a catalogue with description
+# - CatalogAddItemIntent catalog=foods item=pizza description=regular: "You Successfully added pizza to the foods catalogue, saying regular"
+
+---
+# - test: Delete an item
+# - DeleteItemIntent item=pizza catalog=foods: "pizza item does not exist"
+# - test: Update the reminder of an item
+# - UpdateReminderIntent item=tomsawyer catalog=books reminder=11-02-2021: "Reminder of the tomsawyer in the books catalog is updated into 11-02-2021"
+# - test: Adding a reminder to an item
+# - AddReminderIntent item=tomsawyer catalogue=books date=26-10-2021: "You successfully added a reminder to tomsawyer in the books catalog. It is 26-10-2021"
+
+# ---
+
+# - test: View the reminder of an item
+# - ViewReminderIntent item=tomsawyer catalog=books: "Reminder of tomsawyer is due on 26-10-2021. And it is This is a reminder"
+
+# ---
