@@ -9,7 +9,14 @@ const jwt = require("jwt-decode")
 // const {getRequest} = require('./api/api-get-data.js');
 // const {deleteRequest} = require('./api/api-delete-data.js');
 const base_url = 'https://n8l7szvh3j.execute-api.us-east-1.amazonaws.com/dev'
-let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
+// let userID = 'ad397421-c7df-4244-874e-816f1e650c68';
+const { accessToken } = handlerInput.requestEnvelope.session.user;
+let decoded = jwt(accessToken)
+let userID = decoded.sub
+
+
+
+
 //get request
 const getRequest = async (url, userID) => {
     try {
